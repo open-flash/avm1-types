@@ -1,0 +1,63 @@
+{
+  "name": "avm1-tree",
+  "version": "0.0.15",
+  "homepage": "https://github.com/open-flash/avm1-tree",
+  "description": "Abstract Syntax Tree for AVM1",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:open-flash/avm1-tree.git"
+  },
+  "keywords": [
+    "swf",
+    "ast",
+    "avm1"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "prepare": "gulp all:tsconfig.json && gulp :tslint.json && gulp dist",
+    "test": "gulp :lint && gulp test",
+    "prestart": "gulp example:build",
+    "start": "node build/example/example/main.js",
+    "prepublishOnly": "npm test",
+    "lint": "gulp :lint:fix"
+  },
+  "dependencies": {
+    "incident": "^3.1.1",
+    "kryo": "^0.7.0",
+    "semantic-types": "^0.1.1",
+    "ts-tagged": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.3",
+    "@types/minimist": "^1.2.0",
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^9.6.6",
+    "chai": "^4.1.2",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.1",
+    "minimist": "^1.2.0",
+    "ts-node": "^6.0.1",
+    "tslint": "^5.9.1",
+    "turbo-gulp": "^0.17.1",
+    "typescript": "^2.8.3"
+  },
+  "nyc": {
+    "include": [
+      "build/test/lib/**/*.js",
+      "build/test/lib/**/*.mjs"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "extension": [
+      ".mjs"
+    ]
+  },
+  "esm": {
+    "mode": "strict"
+  }
+}
