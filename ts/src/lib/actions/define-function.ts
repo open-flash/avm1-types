@@ -1,9 +1,9 @@
+import { $Bytes } from "kryo/builtins/bytes";
 import { CaseStyle } from "kryo/case-style";
 import { ArrayType } from "kryo/types/array";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
 import { Ucs2StringType } from "kryo/types/ucs2-string";
-import { $Action, Action } from "../action";
 import { $ActionType, ActionType } from "../action-type";
 import { ActionBase } from "./_base";
 
@@ -11,7 +11,7 @@ export interface DefineFunction extends ActionBase {
   action: ActionType.DefineFunction;
   name: string;
   parameters: string[];
-  body: Action[];
+  body: Uint8Array;
 }
 
 export const $DefineFunction: DocumentIoType<DefineFunction> = new DocumentType<DefineFunction>(() => ({
@@ -24,7 +24,7 @@ export const $DefineFunction: DocumentIoType<DefineFunction> = new DocumentType<
         maxLength: Infinity,
       }),
     },
-    body: {type: new ArrayType({itemType: $Action, maxLength: Infinity})},
+    body: {type: $Bytes},
   },
   changeCase: CaseStyle.SnakeCase,
 }));
