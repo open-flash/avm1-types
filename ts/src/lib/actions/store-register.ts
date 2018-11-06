@@ -8,13 +8,13 @@ import { ActionBase } from "./_base";
 
 export interface StoreRegister extends ActionBase {
   action: ActionType.StoreRegister;
-  registerNumber: Uint8;
+  register: Uint8;
 }
 
 export const $StoreRegister: DocumentIoType<StoreRegister> = new DocumentType<StoreRegister>({
   properties: {
     action: {type: new LiteralType({type: $ActionType, value: ActionType.StoreRegister as ActionType.StoreRegister})},
-    registerNumber: {type: $Uint8},
+    register: {type: $Uint8},
   },
   changeCase: CaseStyle.SnakeCase,
 });
