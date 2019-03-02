@@ -40,17 +40,28 @@ impl ::std::cmp::Eq for Value {}
 #[cfg(test)]
 mod tests {
   use super::*;
+  use ::test_generator::test_expand_paths;
 
   #[test]
   fn test_eq() {
     assert_eq!(Value::Boolean(false), Value::Boolean(false));
     assert_eq!(Value::Constant(0), Value::Constant(0));
     assert_eq!(Value::Float32(0.0), Value::Float32(0.0));
+    assert_eq!(Value::Float32(::std::f32::NAN), Value::Float32(::std::f32::NAN));
     assert_eq!(Value::Float64(0.0), Value::Float64(0.0));
+    assert_eq!(Value::Float64(::std::f64::NAN), Value::Float64(::std::f64::NAN));
     assert_eq!(Value::Null, Value::Null);
     assert_eq!(Value::Register(0), Value::Register(0));
     assert_eq!(Value::Sint32(0), Value::Sint32(0));
     assert_eq!(Value::String(String::new()), Value::String(String::new()));
     assert_eq!(Value::Undefined, Value::Undefined);
+  }
+
+  test_expand_paths! { test_parse_json; "../tests/*.json" }
+  fn test_parse_json(path: &str) {
+    let file = ::std::fs::File::open(path).unwrap();
+    let reader = ::std::io::BufReader::new(file);
+    // Check that we can parse the test case without issues
+    serde_json::from_reader::<_, Value>(reader).unwrap();
   }
 }
