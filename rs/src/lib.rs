@@ -1,12 +1,13 @@
 #[macro_use]
 extern crate serde_derive;
 
-pub use self::value::Value;
-
 pub mod actions;
+pub mod cfg_actions;
 mod helpers;
 mod float_is;
 mod value;
+
+pub use self::value::Value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "action", rename_all = "kebab-case")]
@@ -175,4 +176,143 @@ pub enum Action {
   // 0x9e
   GotoFrame2(actions::GotoFrame2),
   // 0x9f
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct Cfg {
+  pub blocks: Vec<CfgBlock>,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct CfgLabel(pub String);
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct CfgBlock {
+  pub label: CfgLabel,
+  pub actions: Vec<CfgAction>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub next: Option<CfgLabel>,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(tag = "action", rename_all = "kebab-case")]
+pub enum CfgAction {
+  Unknown(actions::UnknownAction),
+  Add,
+  And,
+  CastOp,
+  CloneSprite,
+  Divide,
+  Equals,
+  EndDrag,
+  FsCommand2,
+  GetProperty,
+  GetVariable,
+  ImplementsOp,
+  Less,
+  MbStringLength,
+  Multiply,
+  NextFrame,
+  Not,
+  Or,
+  PrevFrame,
+  Play,
+  Pop,
+  RandomNumber,
+  RemoveSprite,
+  SetProperty,
+  SetTarget2,
+  SetVariable,
+  StartDrag,
+  Stop,
+  StopSounds,
+  StringAdd,
+  StringEquals,
+  StringExtract,
+  StringLength,
+  StringLess,
+  Subtract,
+  Throw,
+  ToInteger,
+  ToggleQuality,
+  Trace,
+  CharToAscii,
+  AsciiToChar,
+  GetTime,
+  MbStringExtract,
+  MbCharToAscii,
+  MbAsciiToChar,
+  Delete,
+  Delete2,
+  DefineLocal,
+  CallFunction,
+  Return,
+  Modulo,
+  NewObject,
+  DefineLocal2,
+  InitArray,
+  InitObject,
+  TypeOf,
+  TargetPath,
+  Enumerate,
+  Add2,
+  Less2,
+  Equals2,
+  ToNumber,
+  ToString,
+  PushDuplicate,
+  StackSwap,
+  GetMember,
+  SetMember,
+  Increment,
+  Decrement,
+  CallMethod,
+  NewMethod,
+  InstanceOf,
+  Enumerate2,
+  BitAnd,
+  BitOr,
+  BitXor,
+  BitLShift,
+  BitRShift,
+  BitURShift,
+  StrictEquals,
+  Greater,
+  StringGreater,
+  Extends,
+  GotoFrame(actions::GotoFrame),
+  GetUrl(actions::GetUrl),
+  StoreRegister(actions::StoreRegister),
+  ConstantPool(actions::ConstantPool),
+  WaitForFrame(actions::WaitForFrame),
+  SetTarget(actions::SetTarget),
+  GotoLabel(actions::GoToLabel),
+  WaitForFrame2(actions::WaitForFrame2),
+  DefineFunction2(cfg_actions::CfgDefineFunction2),
+  Try(cfg_actions::CfgTry),
+  With(cfg_actions::CfgWith),
+  Push(actions::Push),
+  Jump(cfg_actions::CfgJump),
+  GetUrl2(actions::GetUrl2),
+  DefineFunction(cfg_actions::CfgDefineFunction),
+  If(cfg_actions::CfgIf),
+  Call,
+  GotoFrame2(actions::GotoFrame2),
+}
+
+#[cfg(test)]
+mod cfg_tests {
+  use super::*;
+  use ::test_generator::test_expand_paths;
+
+  test_expand_paths! { test_parse_cfg; "../tests/cfg/*.json" }
+  fn test_parse_cfg(path: &str) {
+    let file = ::std::fs::File::open(path).unwrap();
+    let reader = ::std::io::BufReader::new(file);
+    // Check that we can parse the test case without issues
+    serde_json::from_reader::<_, Cfg>(reader).unwrap();
+  }
 }
