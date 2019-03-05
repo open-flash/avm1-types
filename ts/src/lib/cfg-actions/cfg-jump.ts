@@ -1,9 +1,9 @@
-import { $CfgLabel, CfgLabel } from "../cfg-label";
+import { CaseStyle } from "kryo/case-style";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
-import { CaseStyle } from "kryo/case-style";
-import { $ActionType, ActionType } from "../action-type";
 import { ActionBase } from "../action-base";
+import { $ActionType, ActionType } from "../action-type";
+import { $CfgLabel, CfgLabel } from "../cfg-label";
 
 export interface CfgJump extends ActionBase {
   action: ActionType.Jump;
