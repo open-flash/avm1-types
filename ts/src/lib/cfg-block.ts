@@ -10,7 +10,7 @@ export interface CfgBlock {
   readonly next?: CfgLabel;
 }
 
-export const $Block: DocumentIoType<CfgBlock> = new DocumentType<CfgBlock>(() => ({
+export const $CfgBlock: DocumentIoType<CfgBlock> = new DocumentType<CfgBlock>(() => ({
   properties: {
     label: {type: $CfgLabel},
     actions: {type: new ArrayType({itemType: $CfgAction, maxLength: Infinity})},

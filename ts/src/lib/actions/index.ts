@@ -79,7 +79,6 @@ export { $Stop, Stop } from "./stop";
 export { $StopSounds, StopSounds } from "./stop-sounds";
 export { $StoreRegister, StoreRegister } from "./store-register";
 export { $StrictEquals, StrictEquals } from "./strict-equals";
-export { $StrictMode, StrictMode } from "./strict-mode";
 export { $StringAdd, StringAdd } from "./string-add";
 export { $StringEquals, StringEquals } from "./string-equals";
 export { $StringExtract, StringExtract } from "./string-extract";
