@@ -7,9 +7,9 @@ import { IntegerType } from "kryo/types/integer";
 import { LiteralType } from "kryo/types/literal";
 import { Ucs2StringType } from "kryo/types/ucs2-string";
 import { UintSize } from "semantic-types";
+import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
 import { $Parameter, Parameter } from "../parameter";
-import { ActionBase } from "./_base";
 
 export interface DefineFunction2 extends ActionBase {
   action: ActionType.DefineFunction2;

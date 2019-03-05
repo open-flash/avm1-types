@@ -3,8 +3,8 @@ import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { IntegerType } from "kryo/types/integer";
 import { LiteralType } from "kryo/types/literal";
 import { Uint8 } from "semantic-types";
+import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
-import { ActionBase } from "./_base";
 
 export interface Unknown extends ActionBase {
   action: ActionType.Unknown;

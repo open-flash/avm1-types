@@ -4,8 +4,8 @@ import { ArrayType } from "kryo/types/array";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
 import { Ucs2StringType } from "kryo/types/ucs2-string";
+import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
-import { ActionBase } from "./_base";
 
 export interface DefineFunction extends ActionBase {
   action: ActionType.DefineFunction;

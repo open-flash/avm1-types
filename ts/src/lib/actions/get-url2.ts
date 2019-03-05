@@ -2,9 +2,9 @@ import { $Boolean } from "kryo/builtins/boolean";
 import { CaseStyle } from "kryo/case-style";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
+import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
 import { $GetUrl2Method, GetUrl2Method } from "../get-url2-method";
-import { ActionBase } from "./_base";
 
 export interface GetUrl2 extends ActionBase {
   action: ActionType.GetUrl2;

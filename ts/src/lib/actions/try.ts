@@ -2,9 +2,9 @@ import { $Bytes } from "kryo/builtins/bytes";
 import { CaseStyle } from "kryo/case-style";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
+import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
 import { $CatchTarget, CatchTarget } from "../catch-target";
-import { ActionBase } from "./_base";
 
 export interface Try extends ActionBase {
   action: ActionType.Try;
