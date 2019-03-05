@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "homepage": "https://github.com/open-flash/avm1-tree",
   "description": "Abstract Syntax Tree for AVM1",
-  "main": "dist/lib/index.js",
-  "types": "dist/lib/index.d.ts",
   "private": true,
   "repository": {
     "type": "git",
