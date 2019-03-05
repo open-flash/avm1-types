@@ -108,7 +108,14 @@ pub struct GoToLabel {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct If {
-  pub branch_offset: i16,
+  pub offset: i16,
+}
+
+// Action code 0x99
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct Jump {
+  pub offset: i16,
 }
 
 // Action code 0x96
@@ -134,7 +141,7 @@ pub struct StoreRegister {
 
 pub mod r#try {
   #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-  #[serde(tag = "type", content = "value", rename_all = "kebab-case")]
+  #[serde(tag = "type", content = "target", rename_all = "kebab-case")]
   pub enum CatchTarget {
     Register(u8),
     Variable(String),
@@ -175,11 +182,4 @@ pub struct WaitForFrame2 {
 #[serde(rename_all = "snake_case")]
 pub struct With {
   pub with: Vec<super::Action>,
-}
-
-// Action code 0x99
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
-pub struct Jump {
-  pub offset: isize,
 }

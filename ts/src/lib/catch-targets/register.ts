@@ -7,7 +7,7 @@ import { $CatchTargetType, CatchTargetType } from "./_type";
 
 export interface Register {
   type: CatchTargetType.Register;
-  register: Uint8;
+  target: Uint8;
 }
 
 export const $Register: DocumentIoType<Register> = new DocumentType<Register>({
@@ -18,7 +18,7 @@ export const $Register: DocumentIoType<Register> = new DocumentType<Register>({
         value: CatchTargetType.Register as CatchTargetType.Register,
       }),
     },
-    register: {type: $Uint8},
+    target: {type: $Uint8},
   },
   changeCase: CaseStyle.SnakeCase,
 });

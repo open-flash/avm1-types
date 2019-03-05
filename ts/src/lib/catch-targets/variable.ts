@@ -6,7 +6,7 @@ import { $CatchTargetType, CatchTargetType } from "./_type";
 
 export interface Variable {
   type: CatchTargetType.Variable;
-  variable: string;
+  target: string;
 }
 
 export const $Variable: DocumentIoType<Variable> = new DocumentType<Variable>({
@@ -17,7 +17,7 @@ export const $Variable: DocumentIoType<Variable> = new DocumentType<Variable>({
         value: CatchTargetType.Variable as CatchTargetType.Variable,
       }),
     },
-    variable: {type: new Ucs2StringType({maxLength: Infinity})},
+    target: {type: new Ucs2StringType({maxLength: Infinity})},
   },
   changeCase: CaseStyle.SnakeCase,
 });
