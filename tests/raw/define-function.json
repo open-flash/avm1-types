@@ -1,0 +1,6 @@
+{
+  "action": "define-function",
+  "name": "f",
+  "parameters": [],
+  "body": "26"
+}

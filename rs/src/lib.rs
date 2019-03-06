@@ -1,13 +1,13 @@
 #[macro_use]
 extern crate serde_derive;
 
+pub use self::value::Value;
+
 pub mod actions;
 pub mod cfg_actions;
 mod helpers;
 mod float_is;
 mod value;
-
-pub use self::value::Value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "action", rename_all = "kebab-case")]
@@ -304,9 +304,10 @@ pub enum CfgAction {
 }
 
 #[cfg(test)]
-mod cfg_tests {
-  use super::*;
+mod e2e_cfg_tests {
   use ::test_generator::test_expand_paths;
+
+  use super::*;
 
   test_expand_paths! { test_parse_cfg; "../tests/cfg/*.json" }
   fn test_parse_cfg(path: &str) {
@@ -314,5 +315,20 @@ mod cfg_tests {
     let reader = ::std::io::BufReader::new(file);
     // Check that we can parse the test case without issues
     serde_json::from_reader::<_, Cfg>(reader).unwrap();
+  }
+}
+
+#[cfg(test)]
+mod e2e_raw_tests {
+  use ::test_generator::test_expand_paths;
+
+  use super::*;
+
+  test_expand_paths! { test_parse_action; "../tests/raw/*.json" }
+  fn test_parse_action(path: &str) {
+    let file = ::std::fs::File::open(path).unwrap();
+    let reader = ::std::io::BufReader::new(file);
+    // Check that we can parse the test case without issues
+    serde_json::from_reader::<_, Action>(reader).unwrap();
   }
 }

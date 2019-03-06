@@ -1,4 +1,4 @@
-use super::helpers::{buffer_to_hex, hex_to_buffer};
+use super::helpers::{buffer_to_hex, hex_to_buffer, option_buffer_to_hex, option_hex_to_buffer};
 use super::value::Value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -23,7 +23,8 @@ pub struct DefineFunction {
   // Empty string if anonymous
   pub name: String,
   pub parameters: Vec<String>,
-  pub body: Vec<super::Action>,
+  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
+  pub body: Vec<u8>,
 }
 
 pub mod define_function2 {
@@ -52,7 +53,8 @@ pub struct DefineFunction2 {
   pub preload_global: bool,
   pub register_count: usize,
   pub parameters: Vec<define_function2::Parameter>,
-  pub body: Vec<super::Action>,
+  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
+  pub body: Vec<u8>,
 }
 
 // Action code 0x83
@@ -152,12 +154,13 @@ pub mod r#try {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct Try {
-  pub r#try: Vec<super::Action>,
+  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
+  pub r#try: Vec<u8>,
   pub catch_target: r#try::CatchTarget,
-  #[serde(skip_serializing_if = "Option::is_none")]
-  pub catch: Option<Vec<super::Action>>,
-  #[serde(skip_serializing_if = "Option::is_none")]
-  pub finally: Option<Vec<super::Action>>,
+  #[serde(skip_serializing_if = "Option::is_none", serialize_with = "option_buffer_to_hex", deserialize_with = "option_hex_to_buffer")]
+  pub catch: Option<Vec<u8>>,
+  #[serde(skip_serializing_if = "Option::is_none", serialize_with = "option_buffer_to_hex", deserialize_with = "option_hex_to_buffer")]
+  pub finally: Option<Vec<u8>>,
 }
 
 // Action code 0x8a
@@ -181,5 +184,6 @@ pub struct WaitForFrame2 {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct With {
-  pub with: Vec<super::Action>,
+  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
+  pub with: Vec<u8>,
 }
