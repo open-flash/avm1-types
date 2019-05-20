@@ -1,4 +1,4 @@
-# Next
+# 0.4.0 (2019-05-20)
 
 - **[Internal]** Refactor project structure.
 - **[Internal]** Add `CHANGELOG.md`.
