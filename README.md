@@ -3,7 +3,7 @@
     alt="Open Flash logo" title="Open Flash" align="right" width="64" height="64" />
 </a>
 
-# SWF Emitter
+# AVM1 Tree
 
 [![npm](https://img.shields.io/npm/v/avm1-tree.svg)](https://www.npmjs.com/package/avm1-tree)
 [![crates.io](https://img.shields.io/crates/v/avm1-tree.svg)](https://crates.io/crates/avm1-tree)
