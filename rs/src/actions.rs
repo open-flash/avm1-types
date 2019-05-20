@@ -138,7 +138,7 @@ pub struct SetTarget {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct StoreRegister {
-  pub register_number: u8,
+  pub register: u8,
 }
 
 pub mod r#try {

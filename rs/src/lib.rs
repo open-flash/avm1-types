@@ -305,17 +305,27 @@ pub enum CfgAction {
 }
 
 #[cfg(test)]
-mod e2e_cfg_tests {
+mod tests {
+  use std::path::Path;
+
   use ::test_generator::test_expand_paths;
 
-  use super::*;
+  use crate::Cfg;
 
-  test_expand_paths! { test_parse_cfg; "../tests/cfg/*.json" }
-  fn test_parse_cfg(path: &str) {
-    let file = ::std::fs::File::open(path).unwrap();
-    let reader = ::std::io::BufReader::new(file);
-    // Check that we can parse the test case without issues
-    serde_json::from_reader::<_, Cfg>(reader).unwrap();
+  test_expand_paths! { test_cfg; "../tests/avm1/[!.]*/*/" }
+  fn test_cfg(path: &str) {
+    let path: &Path = Path::new(path);
+    let _name = path.components().last().unwrap().as_os_str().to_str().expect("Failed to retrieve sample name");
+    let cfg_path = path.join("cfg.json");
+
+    let value_json = ::std::fs::read_to_string(cfg_path).expect("Failed to read CFG file");
+
+    let value: Cfg = serde_json_v8::from_str(&value_json).expect("Failed to read CFG");
+
+    let output_json = serde_json_v8::to_string_pretty(&value).expect("Failed to write CFG");
+    let output_json = format!("{}\n", output_json);
+
+    assert_eq!(output_json, value_json)
   }
 }
 
