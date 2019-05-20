@@ -1,6 +1,6 @@
 {
   "name": "avm1-tree",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/open-flash/avm1-tree",
   "description": "Abstract Syntax Tree for AVM1",
   "private": true,
