@@ -84,6 +84,7 @@ export type Action =
   | actions.StopSounds
   | actions.StoreRegister
   | actions.StrictEquals
+  | actions.StrictMode
   | actions.StringAdd
   | actions.StringEquals
   | actions.StringExtract
@@ -188,6 +189,7 @@ export const $Action: TaggedUnionType<Action> = new TaggedUnionType<Action>(() =
     actions.$StopSounds,
     actions.$StoreRegister,
     actions.$StrictEquals,
+    actions.$StrictMode,
     actions.$StringAdd,
     actions.$StringEquals,
     actions.$StringExtract,

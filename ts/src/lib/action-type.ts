@@ -84,6 +84,7 @@ export enum ActionType {
   StopSounds = 0x09,
   StoreRegister = 0x87,
   StrictEquals = 0x66,
+  StrictMode = 0x89,
   StringAdd = 0x21,
   StringEquals = 0x13,
   StringExtract = 0x15,

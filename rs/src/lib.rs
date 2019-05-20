@@ -291,6 +291,7 @@ pub enum CfgAction {
   SetTarget(actions::SetTarget),
   GotoLabel(actions::GoToLabel),
   WaitForFrame2(actions::WaitForFrame2),
+  StrictMode(actions::StrictMode),
   DefineFunction2(cfg_actions::CfgDefineFunction2),
   Try(cfg_actions::CfgTry),
   With(cfg_actions::CfgWith),

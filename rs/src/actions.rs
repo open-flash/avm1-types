@@ -180,6 +180,13 @@ pub struct WaitForFrame2 {
   // TODO: body: Vec<Action> ?
 }
 
+// Action code 0x89
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct StrictMode {
+  pub mode: u8,
+}
+
 // Action code 0x94
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
