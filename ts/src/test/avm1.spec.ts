@@ -26,11 +26,11 @@ describe("avm1", function () {
   for (const sample of getSamples()) {
     it(sample.name, async function () {
       const inputJson: string = await readTextFile(sample.cfgPath);
-      const movie: Cfg = $Cfg.read(JSON_READER, inputJson);
+      const cfg: Cfg = $Cfg.read(JSON_READER, inputJson);
       // Read the CFG JSON into a valid Cfg
-      chai.assert.isTrue($Cfg.test(movie));
+      chai.assert.isTrue($Cfg.test(cfg));
 
-      const outputJson: string = `${JSON.stringify($Cfg.write(JSON_VALUE_WRITER, movie), null, 2)}\n`;
+      const outputJson: string = `${JSON.stringify($Cfg.write(JSON_VALUE_WRITER, cfg), null, 2)}\n`;
       chai.assert.strictEqual(outputJson, inputJson);
     });
   }
