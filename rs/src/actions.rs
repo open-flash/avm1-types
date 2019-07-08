@@ -68,7 +68,7 @@ pub struct GetUrl {
 pub mod get_url2 {
   #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
   #[serde(rename_all = "kebab-case")]
-  pub enum SendVarsMethod {
+  pub enum Method {
     None,
     Get,
     Post,
@@ -79,7 +79,7 @@ pub mod get_url2 {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct GetUrl2 {
-  pub send_vars_method: get_url2::SendVarsMethod,
+  pub method: get_url2::Method,
   pub load_target: bool,
   pub load_variables: bool,
 }

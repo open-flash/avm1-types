@@ -2,6 +2,10 @@
 
 - **[Breaking change]** Add types to CFG blocks.
 
+### Rust
+
+- **[Fix]** Rename `send_vars_method` to `method` in `GetUrl2`.
+
 # 0.4.0 (2019-05-20)
 
 - **[Internal]** Refactor project structure.
