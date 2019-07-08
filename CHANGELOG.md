@@ -1,3 +1,7 @@
+# Next
+
+- **[Breaking change]** Add types to CFG blocks.
+
 # 0.4.0 (2019-05-20)
 
 - **[Internal]** Refactor project structure.

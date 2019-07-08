@@ -5,6 +5,7 @@ pub use self::value::Value;
 
 pub mod actions;
 pub mod cfg_actions;
+pub mod cfg_blocks;
 mod helpers;
 mod float_is;
 mod value;
@@ -189,12 +190,12 @@ pub struct Cfg {
 pub struct CfgLabel(pub String);
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
-pub struct CfgBlock {
-  pub label: CfgLabel,
-  pub actions: Vec<CfgAction>,
-  #[serde(skip_serializing_if = "Option::is_none")]
-  pub next: Option<CfgLabel>,
+#[serde(tag = "type", rename_all = "kebab-case")]
+pub enum CfgBlock {
+  End(cfg_blocks::CfgEndBlock),
+  Return(cfg_blocks::CfgReturnBlock),
+  Simple(cfg_blocks::CfgSimpleBlock),
+  Throw(cfg_blocks::CfgThrowBlock),
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
