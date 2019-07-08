@@ -6,8 +6,8 @@ pub use self::value::Value;
 pub mod actions;
 pub mod cfg_actions;
 pub mod cfg_blocks;
-mod helpers;
 mod float_is;
+mod helpers;
 mod value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -316,7 +316,13 @@ mod tests {
   test_expand_paths! { test_cfg; "../tests/avm1/[!.]*/*/" }
   fn test_cfg(path: &str) {
     let path: &Path = Path::new(path);
-    let _name = path.components().last().unwrap().as_os_str().to_str().expect("Failed to retrieve sample name");
+    let _name = path
+      .components()
+      .last()
+      .unwrap()
+      .as_os_str()
+      .to_str()
+      .expect("Failed to retrieve sample name");
     let cfg_path = path.join("cfg.json");
 
     let value_json = ::std::fs::read_to_string(cfg_path).expect("Failed to read CFG file");

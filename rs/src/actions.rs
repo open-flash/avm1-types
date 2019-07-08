@@ -157,9 +157,17 @@ pub struct Try {
   #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
   pub r#try: Vec<u8>,
   pub catch_target: r#try::CatchTarget,
-  #[serde(skip_serializing_if = "Option::is_none", serialize_with = "option_buffer_to_hex", deserialize_with = "option_hex_to_buffer")]
+  #[serde(
+    skip_serializing_if = "Option::is_none",
+    serialize_with = "option_buffer_to_hex",
+    deserialize_with = "option_hex_to_buffer"
+  )]
   pub catch: Option<Vec<u8>>,
-  #[serde(skip_serializing_if = "Option::is_none", serialize_with = "option_buffer_to_hex", deserialize_with = "option_hex_to_buffer")]
+  #[serde(
+    skip_serializing_if = "Option::is_none",
+    serialize_with = "option_buffer_to_hex",
+    deserialize_with = "option_hex_to_buffer"
+  )]
   pub finally: Option<Vec<u8>>,
 }
 
