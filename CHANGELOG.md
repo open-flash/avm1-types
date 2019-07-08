@@ -1,4 +1,4 @@
-# Next
+# 0.5.0 (2019-07-08)
 
 - **[Breaking change]** Add types to CFG blocks.
 - **[Internal]** Switch to `travis.com` for CI.
