@@ -1,6 +1,7 @@
 # Next
 
 - **[Breaking change]** Add types to CFG blocks.
+- **[Internal]** Switch to `travis.com` for CI.
 
 ### Rust
 
