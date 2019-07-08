@@ -8,7 +8,7 @@
 [![npm](https://img.shields.io/npm/v/avm1-tree.svg)](https://www.npmjs.com/package/avm1-tree)
 [![crates.io](https://img.shields.io/crates/v/avm1-tree.svg)](https://crates.io/crates/avm1-tree)
 [![GitHub repository](https://img.shields.io/badge/Github-open--flash%2Favm1--tree-blue.svg)](https://github.com/open-flash/avm1-tree)
-[![Build status](https://img.shields.io/travis/open-flash/avm1-tree/master.svg)](https://travis-ci.org/open-flash/avm1-tree)
+[![Build status](https://img.shields.io/travis/com/open-flash/avm1-tree/master.svg)](https://travis-ci.com/open-flash/avm1-tree)
 
 AVM1 type definitions for Rust and Typescript (Node and browser).
 Provides types to represent the static structure of Actionscript Virtual Machine 1 (AVM1) data.
