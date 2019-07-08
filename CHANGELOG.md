@@ -6,6 +6,7 @@
 ### Rust
 
 - **[Fix]** Rename `send_vars_method` to `method` in `GetUrl2`.
+- **[Internal]** Add `rustfmt` support.
 
 # 0.4.0 (2019-05-20)
 
