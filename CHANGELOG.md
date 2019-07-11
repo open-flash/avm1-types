@@ -1,4 +1,4 @@
-# Next
+# 0.6.0 (2019-07-11)
 
 - **[Breaking change]** Replace code bytes with code sizes for raw actions defining code blocks (`DefineFunction`, `DefineFunction2`, `Try`, `With`)
 

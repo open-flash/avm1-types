@@ -1,6 +1,6 @@
 [package]
 name = "avm1-tree"
-version = "0.5.0"
+version = "0.6.0"
 authors = ["Charles Samborski <demurgos@demurgos.net>"]
 description = "Abstract Syntax Tree (AST) for AVM1"
 documentation = "https://github.com/open-flash/avm1-tree"
