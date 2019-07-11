@@ -1,3 +1,7 @@
+# Next
+
+- **[Breaking change]** Replace code bytes with code sizes for raw actions defining code blocks (`DefineFunction`, `DefineFunction2`, `Try`, `With`)
+
 # 0.5.0 (2019-07-08)
 
 - **[Breaking change]** Add types to CFG blocks.

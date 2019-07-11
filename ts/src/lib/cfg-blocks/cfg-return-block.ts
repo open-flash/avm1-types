@@ -1,10 +1,10 @@
 import { CaseStyle } from "kryo/case-style";
 import { ArrayType } from "kryo/types/array";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { $CfgAction, CfgAction } from "../cfg-action";
-import { $CfgLabel, CfgLabel } from "../cfg-label";
-import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { LiteralType } from "kryo/types/literal";
+import { $CfgAction, CfgAction } from "../cfg-action";
+import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
+import { $CfgLabel, CfgLabel } from "../cfg-label";
 
 export interface CfgReturnBlock {
   readonly type: CfgBlockType.Return;

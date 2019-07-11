@@ -1,11 +1,11 @@
 import chai from "chai";
 import fs from "fs";
 import { JsonReader } from "kryo/readers/json";
+import { JsonValueWriter } from "kryo/writers/json-value";
 import sysPath from "path";
+import { $Cfg, Cfg } from "../lib/cfg";
 import meta from "./meta.js";
 import { readTextFile } from "./utils";
-import { JsonValueWriter } from "kryo/writers/json-value";
-import { $Cfg, Cfg } from "../lib/cfg";
 
 const PROJECT_ROOT: string = sysPath.join(meta.dirname, "..", "..", "..");
 const REPO_ROOT: string = sysPath.join(PROJECT_ROOT, "..");

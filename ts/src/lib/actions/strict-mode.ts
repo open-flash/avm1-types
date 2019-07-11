@@ -1,10 +1,10 @@
+import { $Uint8 } from "kryo/builtins/uint8";
 import { CaseStyle } from "kryo/case-style";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
+import { Uint8 } from "semantic-types";
 import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
-import { Uint8 } from "semantic-types";
-import { $Uint8 } from "kryo/builtins/uint8";
 
 export interface StrictMode extends ActionBase {
   action: ActionType.StrictMode;

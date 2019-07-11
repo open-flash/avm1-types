@@ -1,4 +1,4 @@
-use super::helpers::{buffer_to_hex, hex_to_buffer, option_buffer_to_hex, option_hex_to_buffer};
+use super::helpers::{buffer_to_hex, hex_to_buffer};
 use super::value::Value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -23,8 +23,7 @@ pub struct DefineFunction {
   // Empty string if anonymous
   pub name: String,
   pub parameters: Vec<String>,
-  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
-  pub body: Vec<u8>,
+  pub body_size: u16,
 }
 
 pub mod define_function2 {
@@ -53,8 +52,7 @@ pub struct DefineFunction2 {
   pub preload_global: bool,
   pub register_count: usize,
   pub parameters: Vec<define_function2::Parameter>,
-  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
-  pub body: Vec<u8>,
+  pub body_size: u16,
 }
 
 // Action code 0x83
@@ -154,21 +152,12 @@ pub mod r#try {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct Try {
-  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
-  pub r#try: Vec<u8>,
+  pub try_size: u16,
   pub catch_target: r#try::CatchTarget,
-  #[serde(
-    skip_serializing_if = "Option::is_none",
-    serialize_with = "option_buffer_to_hex",
-    deserialize_with = "option_hex_to_buffer"
-  )]
-  pub catch: Option<Vec<u8>>,
-  #[serde(
-    skip_serializing_if = "Option::is_none",
-    serialize_with = "option_buffer_to_hex",
-    deserialize_with = "option_hex_to_buffer"
-  )]
-  pub finally: Option<Vec<u8>>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub catch_size: Option<u16>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub finally_size: Option<u16>,
 }
 
 // Action code 0x8a
@@ -177,7 +166,6 @@ pub struct Try {
 pub struct WaitForFrame {
   pub frame: usize,
   pub skip_count: usize,
-  // TODO: body: Vec<Action> ?
 }
 
 // Action code 0x8d
@@ -185,7 +173,6 @@ pub struct WaitForFrame {
 #[serde(rename_all = "snake_case")]
 pub struct WaitForFrame2 {
   pub skip_count: usize,
-  // TODO: body: Vec<Action> ?
 }
 
 // Action code 0x89
@@ -199,6 +186,5 @@ pub struct StrictMode {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct With {
-  #[serde(serialize_with = "buffer_to_hex", deserialize_with = "hex_to_buffer")]
-  pub with: Vec<u8>,
+  pub with_size: u16,
 }

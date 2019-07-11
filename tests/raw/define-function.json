@@ -2,5 +2,5 @@
   "action": "define-function",
   "name": "f",
   "parameters": [],
-  "body": "26"
+  "body_size": 1
 }
