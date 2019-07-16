@@ -12,37 +12,37 @@ import { With as RawWith } from "./actions/with";
 import { $CfgDefineFunction, CfgDefineFunction } from "./cfg-actions/cfg-define-function";
 import { $CfgDefineFunction2, CfgDefineFunction2 } from "./cfg-actions/cfg-define-function2";
 import { $CfgIf, CfgIf } from "./cfg-actions/cfg-if";
-import { $CfgJump, CfgJump } from "./cfg-actions/cfg-jump";
-import { $CfgTry, CfgTry } from "./cfg-actions/cfg-try";
-import { $CfgWith, CfgWith } from "./cfg-actions/cfg-with";
 
 export type CfgAction = Exclude<RawAction, RawDefineFunction | RawDefineFunction2 | RawIf | RawJump | RawTry | RawWith>
   | CfgDefineFunction
   | CfgDefineFunction2
-  | CfgIf
-  | CfgJump
-  | CfgTry
-  | CfgWith;
+  | CfgIf;
 
-export const $CfgAction: TaggedUnionType<CfgAction> = new TaggedUnionType<CfgAction>(() => ({
-  variants: $RawAction.variants.map(($rawAction: DocumentType<RawAction>): DocumentIoType<CfgAction> => {
+export const $CfgAction: TaggedUnionType<CfgAction> = new TaggedUnionType<CfgAction>(() => {
+  const variants: DocumentType<CfgAction>[] = [];
+  for (const $rawAction of $RawAction.variants) {
     const $rawActionType: LiteralType<ActionType> = $rawAction.properties.action.type as any;
     switch ($rawActionType.value) {
       case ActionType.DefineFunction:
-        return $CfgDefineFunction;
+        variants.push($CfgDefineFunction);
+        break;
       case ActionType.DefineFunction2:
-        return $CfgDefineFunction2;
+        variants.push($CfgDefineFunction2);
+        break;
       case ActionType.If:
-        return $CfgIf;
+        variants.push($CfgIf);
+        break;
       case ActionType.Jump:
-        return $CfgJump;
+      case ActionType.Return:
       case ActionType.Try:
-        return $CfgTry;
+      case ActionType.Throw:
       case ActionType.With:
-        return $CfgWith;
+        // These raw actions have no CFG equivalent.
+        break;
       default:
-        return $rawAction as DocumentIoType<CfgAction>;
+        variants.push($rawAction as DocumentIoType<CfgAction>);
+        break;
     }
-  }),
-  tag: "action",
-}));
+  }
+  return {variants, tag: "action"};
+});

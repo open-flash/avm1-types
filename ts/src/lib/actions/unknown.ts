@@ -8,13 +8,13 @@ import { $ActionType, ActionType } from "../action-type";
 
 export interface Unknown extends ActionBase {
   action: ActionType.Unknown;
-  actionCode: Uint8;
+  code: Uint8;
 }
 
 export const $Unknown: DocumentIoType<Unknown> = new DocumentType<Unknown>({
   properties: {
     action: {type: new LiteralType({type: $ActionType, value: ActionType.Unknown as ActionType.Unknown})},
-    actionCode: {type: new IntegerType()},
+    code: {type: new IntegerType()},
   },
   changeCase: CaseStyle.SnakeCase,
 });

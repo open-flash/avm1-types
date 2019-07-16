@@ -2,10 +2,12 @@ import { CaseStyle } from "kryo/case-style";
 import { TsEnumType } from "kryo/types/ts-enum";
 
 export enum CfgBlockType {
-  Simple,
-  End,
+  Error,
   Return,
+  Simple,
   Throw,
+  Try,
+  With,
 }
 
 export const $CfgBlockType: TsEnumType<CfgBlockType> = new TsEnumType<CfgBlockType>({

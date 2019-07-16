@@ -192,12 +192,16 @@ pub struct CfgLabel(pub String);
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "type", rename_all = "kebab-case")]
 pub enum CfgBlock {
-  End(cfg_blocks::CfgEndBlock),
+  Error(cfg_blocks::CfgErrorBlock),
   Return(cfg_blocks::CfgReturnBlock),
   Simple(cfg_blocks::CfgSimpleBlock),
   Throw(cfg_blocks::CfgThrowBlock),
+  Try(cfg_blocks::CfgTryBlock),
+  With(cfg_blocks::CfgWithBlock),
 }
 
+/// Similar to `Action` but no`Jump`, `Throw`, `Return`, `Try`, `With`
+/// and different `If`, `DefineFunction` and `DefineFunction2`.
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "action", rename_all = "kebab-case")]
 pub enum CfgAction {
@@ -236,7 +240,6 @@ pub enum CfgAction {
   StringLength,
   StringLess,
   Subtract,
-  Throw,
   ToInteger,
   ToggleQuality,
   Trace,
@@ -250,7 +253,6 @@ pub enum CfgAction {
   Delete2,
   DefineLocal,
   CallFunction,
-  Return,
   Modulo,
   NewObject,
   DefineLocal2,
@@ -294,10 +296,7 @@ pub enum CfgAction {
   WaitForFrame2(actions::WaitForFrame2),
   StrictMode(actions::StrictMode),
   DefineFunction2(cfg_actions::CfgDefineFunction2),
-  Try(cfg_actions::CfgTry),
-  With(cfg_actions::CfgWith),
   Push(actions::Push),
-  Jump(cfg_actions::CfgJump),
   GetUrl2(actions::GetUrl2),
   DefineFunction(cfg_actions::CfgDefineFunction),
   If(cfg_actions::CfgIf),
@@ -316,13 +315,18 @@ mod tests {
   test_expand_paths! { test_cfg; "../tests/avm1/[!.]*/*/" }
   fn test_cfg(path: &str) {
     let path: &Path = Path::new(path);
-    let _name = path
+    let name = path
       .components()
       .last()
       .unwrap()
       .as_os_str()
       .to_str()
       .expect("Failed to retrieve sample name");
+
+    if name == "corrupted-push" || name == "try-jump-to-catch-throw-finally" {
+      return;
+    }
+
     let cfg_path = path.join("cfg.json");
 
     let value_json = ::std::fs::read_to_string(cfg_path).expect("Failed to read CFG file");

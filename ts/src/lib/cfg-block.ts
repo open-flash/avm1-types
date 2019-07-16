@@ -1,21 +1,27 @@
 import { TaggedUnionType } from "kryo/types/tagged-union";
-import { $CfgEndBlock, CfgEndBlock } from "./cfg-blocks/cfg-end-block";
+import { $CfgErrorBlock, CfgErrorBlock } from "./cfg-blocks/cfg-error-block";
 import { $CfgReturnBlock, CfgReturnBlock } from "./cfg-blocks/cfg-return-block";
 import { $CfgSimpleBlock, CfgSimpleBlock } from "./cfg-blocks/cfg-simple-block";
 import { $CfgThrowBlock, CfgThrowBlock } from "./cfg-blocks/cfg-throw-block";
+import { $CfgTryBlock, CfgTryBlock } from "./cfg-blocks/cfg-try-block";
+import { $CfgWithBlock, CfgWithBlock } from "./cfg-blocks/cfg-with-block";
 
 export type CfgBlock =
-  CfgEndBlock
+  CfgErrorBlock
   | CfgReturnBlock
   | CfgSimpleBlock
-  | CfgThrowBlock;
+  | CfgThrowBlock
+  | CfgTryBlock
+  | CfgWithBlock;
 
 export const $CfgBlock: TaggedUnionType<CfgBlock> = new TaggedUnionType<CfgBlock>(() => ({
   variants: [
-    $CfgEndBlock,
+    $CfgErrorBlock,
     $CfgReturnBlock,
     $CfgSimpleBlock,
     $CfgThrowBlock,
+    $CfgTryBlock,
+    $CfgWithBlock,
   ],
   tag: "type",
 }));

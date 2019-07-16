@@ -4,21 +4,19 @@ import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { LiteralType } from "kryo/types/literal";
 import { $CfgAction, CfgAction } from "../cfg-action";
 import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
-import { $CfgLabel, $NullableCfgLabel, CfgLabel, NullableCfgLabel } from "../cfg-label";
+import { $CfgLabel, CfgLabel } from "../cfg-label";
 
-export interface CfgSimpleBlock {
-  readonly type: CfgBlockType.Simple;
+export interface CfgErrorBlock {
+  readonly type: CfgBlockType.Error;
   readonly label: CfgLabel;
   readonly actions: ReadonlyArray<CfgAction>;
-  readonly next: NullableCfgLabel;
 }
 
-export const $CfgSimpleBlock: DocumentIoType<CfgSimpleBlock> = new DocumentType<CfgSimpleBlock>(() => ({
+export const $CfgErrorBlock: DocumentIoType<CfgErrorBlock> = new DocumentType<CfgErrorBlock>(() => ({
   properties: {
-    type: {type: new LiteralType({type: $CfgBlockType, value: CfgBlockType.Simple as CfgBlockType.Simple})},
+    type: {type: new LiteralType({type: $CfgBlockType, value: CfgBlockType.Error as CfgBlockType.Error})},
     label: {type: $CfgLabel},
     actions: {type: new ArrayType({itemType: $CfgAction, maxLength: Infinity})},
-    next: {type: $NullableCfgLabel},
   },
   changeCase: CaseStyle.SnakeCase,
 }));
