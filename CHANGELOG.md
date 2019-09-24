@@ -1,4 +1,4 @@
-# Next
+# 0.8.0 (2019-09-24)
 
 - **[Breaking change]** Use CFG blocks instead of actions for `CfgIf`, `WaitForFrame` and `WaitForFrame2`.
 - **[Internal]** Update dependencies.
