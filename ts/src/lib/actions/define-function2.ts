@@ -1,12 +1,12 @@
 import { $Boolean } from "kryo/builtins/boolean";
 import { $Uint16 } from "kryo/builtins/uint16";
+import { $Uint8 } from "kryo/builtins/uint8";
 import { CaseStyle } from "kryo/case-style";
 import { ArrayType } from "kryo/types/array";
 import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { IntegerType } from "kryo/types/integer";
 import { LiteralType } from "kryo/types/literal";
 import { Ucs2StringType } from "kryo/types/ucs2-string";
-import { Uint16, UintSize } from "semantic-types";
+import { Uint16, Uint8 } from "semantic-types";
 import { ActionBase } from "../action-base";
 import { $ActionType, ActionType } from "../action-type";
 import { $Parameter, Parameter } from "../parameter";
@@ -14,16 +14,16 @@ import { $Parameter, Parameter } from "../parameter";
 export interface DefineFunction2 extends ActionBase {
   action: ActionType.DefineFunction2;
   name: string;
-  preloadParent: boolean;
-  preloadRoot: boolean;
-  suppressSuper: boolean;
-  preloadSuper: boolean;
-  suppressArguments: boolean;
-  preloadArguments: boolean;
-  suppressThis: boolean;
+  registerCount: Uint8;
   preloadThis: boolean;
+  suppressThis: boolean;
+  preloadArguments: boolean;
+  suppressArguments: boolean;
+  preloadSuper: boolean;
+  suppressSuper: boolean;
+  preloadRoot: boolean;
+  preloadParent: boolean;
   preloadGlobal: boolean;
-  registerCount: UintSize;
   parameters: Parameter[];
   bodySize: Uint16;
 }
@@ -37,16 +37,16 @@ export const $DefineFunction2: DocumentIoType<DefineFunction2> = new DocumentTyp
       }),
     },
     name: {type: new Ucs2StringType({maxLength: Infinity})},
-    preloadParent: {type: $Boolean},
-    preloadRoot: {type: $Boolean},
-    suppressSuper: {type: $Boolean},
-    preloadSuper: {type: $Boolean},
-    suppressArguments: {type: $Boolean},
-    preloadArguments: {type: $Boolean},
-    suppressThis: {type: $Boolean},
+    registerCount: {type: $Uint8},
     preloadThis: {type: $Boolean},
+    suppressThis: {type: $Boolean},
+    preloadArguments: {type: $Boolean},
+    suppressArguments: {type: $Boolean},
+    preloadSuper: {type: $Boolean},
+    suppressSuper: {type: $Boolean},
+    preloadRoot: {type: $Boolean},
+    preloadParent: {type: $Boolean},
     preloadGlobal: {type: $Boolean},
-    registerCount: {type: new IntegerType()},
     parameters: {type: new ArrayType({itemType: $Parameter, maxLength: Infinity})},
     bodySize: {type: $Uint16},
   },

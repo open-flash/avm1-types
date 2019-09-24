@@ -25,7 +25,7 @@ pub fn option_buffer_to_hex<S>(buffer: &Option<Vec<u8>>, serializer: S) -> Resul
 where
   S: Serializer,
 {
-  use serde::ser::Serialize;
+  use serde::Serialize;
 
   #[derive(Serialize)]
   struct Wrapper<'a>(#[serde(serialize_with = "buffer_to_hex")] &'a Vec<u8>);

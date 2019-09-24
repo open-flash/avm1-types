@@ -1,6 +1,3 @@
-extern crate avm1_tree;
-extern crate serde_json;
-
 use avm1_tree::Action;
 use std::io::Read;
 

@@ -1,4 +1,5 @@
 use super::float_is::Is;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(tag = "type", content = "value", rename_all = "kebab-case")]

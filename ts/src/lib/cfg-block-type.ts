@@ -3,10 +3,13 @@ import { TsEnumType } from "kryo/types/ts-enum";
 
 export enum CfgBlockType {
   Error,
+  If,
   Return,
   Simple,
   Throw,
   Try,
+  WaitForFrame,
+  WaitForFrame2,
   With,
 }
 

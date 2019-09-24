@@ -1,5 +1,4 @@
-#[macro_use]
-extern crate serde_derive;
+use serde::{Deserialize, Serialize};
 
 pub use self::value::Value;
 
@@ -193,15 +192,19 @@ pub struct CfgLabel(pub String);
 #[serde(tag = "type", rename_all = "kebab-case")]
 pub enum CfgBlock {
   Error(cfg_blocks::CfgErrorBlock),
+  If(cfg_blocks::CfgIfBlock),
   Return(cfg_blocks::CfgReturnBlock),
   Simple(cfg_blocks::CfgSimpleBlock),
   Throw(cfg_blocks::CfgThrowBlock),
   Try(cfg_blocks::CfgTryBlock),
+  WaitForFrame(cfg_blocks::CfgWaitForFrameBlock),
+  WaitForFrame2(cfg_blocks::CfgWaitForFrame2Block),
   With(cfg_blocks::CfgWithBlock),
 }
 
-/// Similar to `Action` but no`Jump`, `Throw`, `Return`, `Try`, `With`
-/// and different `If`, `DefineFunction` and `DefineFunction2`.
+/// Similar to `Action` but no `Jump`, `If` `Throw`, `Return`, `Try`,
+/// `WaitForFrame`, `WaitForFrame2` and `With`, also different `DefineFunction`
+/// and `DefineFunction2`.
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "action", rename_all = "kebab-case")]
 pub enum CfgAction {
@@ -290,16 +293,13 @@ pub enum CfgAction {
   GetUrl(actions::GetUrl),
   StoreRegister(actions::StoreRegister),
   ConstantPool(actions::ConstantPool),
-  WaitForFrame(actions::WaitForFrame),
   SetTarget(actions::SetTarget),
   GotoLabel(actions::GoToLabel),
-  WaitForFrame2(actions::WaitForFrame2),
   StrictMode(actions::StrictMode),
   DefineFunction2(cfg_actions::CfgDefineFunction2),
   Push(actions::Push),
   GetUrl2(actions::GetUrl2),
   DefineFunction(cfg_actions::CfgDefineFunction),
-  If(cfg_actions::CfgIf),
   Call,
   GotoFrame2(actions::GotoFrame2),
 }

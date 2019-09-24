@@ -1,3 +1,5 @@
+use ::serde::{Deserialize, Serialize};
+
 use super::helpers::{buffer_to_hex, hex_to_buffer};
 use super::value::Value;
 
@@ -27,6 +29,8 @@ pub struct DefineFunction {
 }
 
 pub mod define_function2 {
+  use ::serde::{Deserialize, Serialize};
+
   #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
   #[serde(rename_all = "snake_case")]
   pub struct Parameter {
@@ -41,16 +45,16 @@ pub mod define_function2 {
 pub struct DefineFunction2 {
   // Empty string if anonymous
   pub name: String,
-  pub preload_parent: bool,
-  pub preload_root: bool,
-  pub suppress_super: bool,
-  pub preload_super: bool,
-  pub suppress_arguments: bool,
-  pub preload_arguments: bool,
-  pub suppress_this: bool,
+  pub register_count: u8,
   pub preload_this: bool,
+  pub suppress_this: bool,
+  pub preload_arguments: bool,
+  pub suppress_arguments: bool,
+  pub preload_super: bool,
+  pub suppress_super: bool,
+  pub preload_root: bool,
+  pub preload_parent: bool,
   pub preload_global: bool,
-  pub register_count: usize,
   pub parameters: Vec<define_function2::Parameter>,
   pub body_size: u16,
 }
@@ -64,6 +68,8 @@ pub struct GetUrl {
 }
 
 pub mod get_url2 {
+  use ::serde::{Deserialize, Serialize};
+
   #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
   #[serde(rename_all = "kebab-case")]
   pub enum Method {
@@ -140,6 +146,8 @@ pub struct StoreRegister {
 }
 
 pub mod r#try {
+  use ::serde::{Deserialize, Serialize};
+
   #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
   #[serde(tag = "type", content = "target", rename_all = "kebab-case")]
   pub enum CatchTarget {

@@ -8,15 +8,19 @@ import { DefineFunction2 as RawDefineFunction2 } from "./actions/define-function
 import { If as RawIf } from "./actions/if";
 import { Jump as RawJump } from "./actions/jump";
 import { Try as RawTry } from "./actions/try";
+import { WaitForFrame as RawWaitForFrame } from "./actions/wait-for-frame";
+import { WaitForFrame2 as RawWaitForFrame2 } from "./actions/wait-for-frame2";
 import { With as RawWith } from "./actions/with";
 import { $CfgDefineFunction, CfgDefineFunction } from "./cfg-actions/cfg-define-function";
 import { $CfgDefineFunction2, CfgDefineFunction2 } from "./cfg-actions/cfg-define-function2";
-import { $CfgIf, CfgIf } from "./cfg-actions/cfg-if";
 
-export type CfgAction = Exclude<RawAction, RawDefineFunction | RawDefineFunction2 | RawIf | RawJump | RawTry | RawWith>
+export type CfgAction =
+  Exclude<
+    RawAction,
+    RawDefineFunction | RawDefineFunction2 | RawIf | RawJump | RawTry | RawWaitForFrame | RawWaitForFrame2 | RawWith
+  >
   | CfgDefineFunction
-  | CfgDefineFunction2
-  | CfgIf;
+  | CfgDefineFunction2;
 
 export const $CfgAction: TaggedUnionType<CfgAction> = new TaggedUnionType<CfgAction>(() => {
   const variants: DocumentType<CfgAction>[] = [];
@@ -29,13 +33,12 @@ export const $CfgAction: TaggedUnionType<CfgAction> = new TaggedUnionType<CfgAct
       case ActionType.DefineFunction2:
         variants.push($CfgDefineFunction2);
         break;
-      case ActionType.If:
-        variants.push($CfgIf);
-        break;
       case ActionType.Jump:
       case ActionType.Return:
       case ActionType.Try:
       case ActionType.Throw:
+      case ActionType.WaitForFrame:
+      case ActionType.WaitForFrame2:
       case ActionType.With:
         // These raw actions have no CFG equivalent.
         break;

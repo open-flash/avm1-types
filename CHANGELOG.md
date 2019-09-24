@@ -1,3 +1,8 @@
+# Next
+
+- **[Breaking change]** Use CFG blocks instead of actions for `CfgIf`, `WaitForFrame` and `WaitForFrame2`.
+- **[Internal]** Update dependencies.
+
 # 0.7.0 (2019-07-16)
 
 - **[Breaking change]** Refactor CFG nodes. This is a large change to enable the proper representation of `try` and `with` actions as CFG nodes. The `try`, `with`, `return`, `throw` and `jump` actions are no longer available as CFG actions and a replaced by dedicated block types. `End` and `Simple` CFG block types were unified: a `null` represents the end of the current stack frame.
