@@ -306,13 +306,11 @@ pub enum CfgAction {
 
 #[cfg(test)]
 mod tests {
+  use crate::Cfg;
+  use ::test_generator::test_resources;
   use std::path::Path;
 
-  use ::test_generator::test_expand_paths;
-
-  use crate::Cfg;
-
-  test_expand_paths! { test_cfg; "../tests/avm1/[!.]*/*/" }
+  #[test_resources("../tests/avm1/[!.]*/*/")]
   fn test_cfg(path: &str) {
     let path: &Path = Path::new(path);
     let name = path
@@ -342,11 +340,10 @@ mod tests {
 
 #[cfg(test)]
 mod e2e_raw_tests {
-  use ::test_generator::test_expand_paths;
-
   use super::*;
+  use ::test_generator::test_resources;
 
-  test_expand_paths! { test_parse_action; "../tests/raw/*.json" }
+  #[test_resources("../tests/raw/*.json")]
   fn test_parse_action(path: &str) {
     let file = ::std::fs::File::open(path).unwrap();
     let reader = ::std::io::BufReader::new(file);

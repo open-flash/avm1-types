@@ -41,7 +41,7 @@ impl ::std::cmp::Eq for Value {}
 #[cfg(test)]
 mod tests {
   use super::*;
-  use ::test_generator::test_expand_paths;
+  use ::test_generator::test_resources;
 
   #[test]
   fn test_eq() {
@@ -58,7 +58,7 @@ mod tests {
     assert_eq!(Value::Undefined, Value::Undefined);
   }
 
-  test_expand_paths! { test_parse_json; "../tests/*.json" }
+  #[test_resources("../tests/*.json")]
   fn test_parse_json(path: &str) {
     let file = ::std::fs::File::open(path).unwrap();
     let reader = ::std::io::BufReader::new(file);
