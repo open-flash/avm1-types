@@ -3,6 +3,7 @@ import * as actions from "./actions/index";
 
 export type Action =
   actions.Unknown
+  | actions.Error
   | actions.Add
   | actions.Add2
   | actions.And
@@ -108,6 +109,7 @@ export type Action =
 export const $Action: TaggedUnionType<Action> = new TaggedUnionType<Action>(() => ({
   variants: [
     actions.$Unknown,
+    actions.$Error,
     actions.$Add,
     actions.$Add2,
     actions.$And,

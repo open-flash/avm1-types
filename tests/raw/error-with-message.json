@@ -1,0 +1,6 @@
+{
+  "action": "error",
+  "error": {
+    "message": "Invalid code for push value type: 0xff"
+  }
+}

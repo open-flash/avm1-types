@@ -59,6 +59,24 @@ pub struct DefineFunction2 {
   pub body_size: u16,
 }
 
+pub mod error {
+  use ::serde::{Deserialize, Serialize};
+
+  #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+  #[serde(rename_all = "snake_case")]
+  pub struct InvalidActionError {
+    pub message: String,
+  }
+}
+
+// No corresponding action code
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct Error {
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub error: Option<error::InvalidActionError>,
+}
+
 // Action code 0x83
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]

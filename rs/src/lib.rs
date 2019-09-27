@@ -13,6 +13,7 @@ mod value;
 #[serde(tag = "action", rename_all = "kebab-case")]
 pub enum Action {
   Unknown(actions::UnknownAction),
+  Error(actions::Error),
   Add,
   And,
   CastOp,
@@ -306,9 +307,11 @@ pub enum CfgAction {
 
 #[cfg(test)]
 mod tests {
-  use crate::Cfg;
-  use ::test_generator::test_resources;
   use std::path::Path;
+
+  use ::test_generator::test_resources;
+
+  use crate::Cfg;
 
   #[test_resources("../tests/avm1/[!.]*/*/")]
   fn test_cfg(path: &str) {
@@ -340,8 +343,9 @@ mod tests {
 
 #[cfg(test)]
 mod e2e_raw_tests {
-  use super::*;
   use ::test_generator::test_resources;
+
+  use super::*;
 
   #[test_resources("../tests/raw/*.json")]
   fn test_parse_action(path: &str) {

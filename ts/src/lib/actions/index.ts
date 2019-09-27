@@ -28,6 +28,7 @@ export { $Enumerate, Enumerate } from "./enumerate";
 export { $Enumerate2, Enumerate2 } from "./enumerate2";
 export { $Equals, Equals } from "./equals";
 export { $Equals2, Equals2 } from "./equals2";
+export { $Error, Error } from "./error";
 export { $Extends, Extends } from "./extends";
 export { $FsCommand2, FsCommand2 } from "./fs-command2";
 export { $GetMember, GetMember } from "./get-member";
