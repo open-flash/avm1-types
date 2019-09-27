@@ -3,6 +3,10 @@
 - **[Breaking change]** Add `Error` raw action to represent invalid actions.
 - **[Breaking]** Add required `Cfg.main` block to ensure the CFG is non-empty.
 
+## Typescript
+
+- **[Fix]** Add `data` field to `Unknown` raw actions.
+
 # 0.8.0 (2019-09-24)
 
 - **[Breaking change]** Use CFG blocks instead of actions for `CfgIf`, `WaitForFrame` and `WaitForFrame2`.
