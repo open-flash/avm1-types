@@ -1,4 +1,4 @@
-# Next
+# 0.9.0 (2019-09-27)
 
 - **[Breaking change]** Rename to `avm1-types` (from `avm1-tree`).
 - **[Breaking change]** Add `Error` raw action to represent invalid actions.
