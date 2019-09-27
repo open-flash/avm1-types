@@ -9,12 +9,12 @@ import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { $CfgLabel, $NullableCfgLabel, CfgLabel, NullableCfgLabel } from "../cfg-label";
 
 export interface CfgWaitForFrameBlock {
-  readonly type: CfgBlockType.WaitForFrame;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
-  readonly frame: UintSize;
-  readonly ifLoaded: NullableCfgLabel;
-  readonly ifNotLoaded: NullableCfgLabel;
+  type: CfgBlockType.WaitForFrame;
+  label: CfgLabel;
+  actions: CfgAction[];
+  frame: UintSize;
+  ifLoaded: NullableCfgLabel;
+  ifNotLoaded: NullableCfgLabel;
 }
 
 // tslint:disable-next-line:max-line-length

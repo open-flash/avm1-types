@@ -7,9 +7,9 @@ import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { $CfgLabel, CfgLabel } from "../cfg-label";
 
 export interface CfgReturnBlock {
-  readonly type: CfgBlockType.Return;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
+  type: CfgBlockType.Return;
+  label: CfgLabel;
+  actions: CfgAction[];
 }
 
 export const $CfgReturnBlock: DocumentIoType<CfgReturnBlock> = new DocumentType<CfgReturnBlock>(() => ({

@@ -4,7 +4,7 @@ import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { $CfgBlock, CfgBlock } from "./cfg-block";
 
 export interface Cfg {
-  readonly blocks: ReadonlyArray<CfgBlock>;
+  blocks: CfgBlock[];
 }
 
 export const $Cfg: DocumentIoType<Cfg> = new DocumentType<Cfg>(() => ({

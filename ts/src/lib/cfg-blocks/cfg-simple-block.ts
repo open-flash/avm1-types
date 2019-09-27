@@ -7,10 +7,10 @@ import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { $CfgLabel, $NullableCfgLabel, CfgLabel, NullableCfgLabel } from "../cfg-label";
 
 export interface CfgSimpleBlock {
-  readonly type: CfgBlockType.Simple;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
-  readonly next: NullableCfgLabel;
+  type: CfgBlockType.Simple;
+  label: CfgLabel;
+  actions: CfgAction[];
+  next: NullableCfgLabel;
 }
 
 export const $CfgSimpleBlock: DocumentIoType<CfgSimpleBlock> = new DocumentType<CfgSimpleBlock>(() => ({

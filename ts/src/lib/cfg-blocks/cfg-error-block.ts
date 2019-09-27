@@ -8,10 +8,10 @@ import { $CfgLabel, CfgLabel } from "../cfg-label";
 import { $InvalidActionError, InvalidActionError } from "../invalid-action-error";
 
 export interface CfgErrorBlock {
-  readonly type: CfgBlockType.Error;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
-  readonly error?: InvalidActionError;
+  type: CfgBlockType.Error;
+  label: CfgLabel;
+  actions: CfgAction[];
+  error?: InvalidActionError;
 }
 
 export const $CfgErrorBlock: DocumentIoType<CfgErrorBlock> = new DocumentType<CfgErrorBlock>(() => ({

@@ -7,6 +7,7 @@
 ## Typescript
 
 - **[Fix]** Add `data` field to `Unknown` raw actions.
+- **[Fix]** Remove `readonly` modifier.
 
 # 0.8.0 (2019-09-24)
 

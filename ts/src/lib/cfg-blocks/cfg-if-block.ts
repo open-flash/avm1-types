@@ -7,11 +7,11 @@ import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { $CfgLabel, $NullableCfgLabel, CfgLabel, NullableCfgLabel } from "../cfg-label";
 
 export interface CfgIfBlock {
-  readonly type: CfgBlockType.If;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
-  readonly ifTrue: NullableCfgLabel;
-  readonly ifFalse: NullableCfgLabel;
+  type: CfgBlockType.If;
+  label: CfgLabel;
+  actions: CfgAction[];
+  ifTrue: NullableCfgLabel;
+  ifFalse: NullableCfgLabel;
 }
 
 export const $CfgIfBlock: DocumentIoType<CfgIfBlock> = new DocumentType<CfgIfBlock>(() => ({

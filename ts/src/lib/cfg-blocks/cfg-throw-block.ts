@@ -7,9 +7,9 @@ import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { $CfgLabel, CfgLabel } from "../cfg-label";
 
 export interface CfgThrowBlock {
-  readonly type: CfgBlockType.Throw;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
+  type: CfgBlockType.Throw;
+  label: CfgLabel;
+  actions: CfgAction[];
 }
 
 export const $CfgThrowBlock: DocumentIoType<CfgThrowBlock> = new DocumentType<CfgThrowBlock>(() => ({

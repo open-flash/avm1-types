@@ -8,9 +8,9 @@ import { $CfgBlockType, CfgBlockType } from "../cfg-block-type";
 import { $CfgLabel, CfgLabel } from "../cfg-label";
 
 export interface CfgWithBlock {
-  readonly type: CfgBlockType.With;
-  readonly label: CfgLabel;
-  readonly actions: ReadonlyArray<CfgAction>;
+  type: CfgBlockType.With;
+  label: CfgLabel;
+  actions: CfgAction[];
   with: Cfg;
 }
 

@@ -11,7 +11,7 @@ import { $CfgLabel, CfgLabel } from "../cfg-label";
 export interface CfgTryBlock {
   type: CfgBlockType.Try;
   label: CfgLabel;
-  actions: ReadonlyArray<CfgAction>;
+  actions: CfgAction[];
   try: Cfg;
   catch?: Cfg;
   catchTarget: CatchTarget;
