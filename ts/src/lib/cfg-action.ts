@@ -5,6 +5,8 @@ import { $Action as $RawAction, Action as RawAction } from "./action";
 import { ActionType } from "./action-type";
 import { DefineFunction as RawDefineFunction } from "./actions/define-function";
 import { DefineFunction2 as RawDefineFunction2 } from "./actions/define-function2";
+import { End as RawEnd } from "./actions/end";
+import { Error as RawError } from "./actions/error";
 import { If as RawIf } from "./actions/if";
 import { Jump as RawJump } from "./actions/jump";
 import { Try as RawTry } from "./actions/try";
@@ -15,10 +17,17 @@ import { $CfgDefineFunction, CfgDefineFunction } from "./cfg-actions/cfg-define-
 import { $CfgDefineFunction2, CfgDefineFunction2 } from "./cfg-actions/cfg-define-function2";
 
 export type CfgAction =
-  Exclude<
-    RawAction,
-    RawDefineFunction | RawDefineFunction2 | RawIf | RawJump | RawTry | RawWaitForFrame | RawWaitForFrame2 | RawWith
-  >
+  Exclude<RawAction,
+    RawDefineFunction
+    | RawDefineFunction2
+    | RawEnd
+    | RawError
+    | RawIf
+    | RawJump
+    | RawTry
+    | RawWaitForFrame
+    | RawWaitForFrame2
+    | RawWith>
   | CfgDefineFunction
   | CfgDefineFunction2;
 
@@ -33,6 +42,8 @@ export const $CfgAction: TaggedUnionType<CfgAction> = new TaggedUnionType<CfgAct
       case ActionType.DefineFunction2:
         variants.push($CfgDefineFunction2);
         break;
+      case ActionType.End:
+      case ActionType.Error:
       case ActionType.Jump:
       case ActionType.Return:
       case ActionType.Try:

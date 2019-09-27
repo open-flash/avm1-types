@@ -1,7 +1,7 @@
 # Next
 
 - **[Breaking change]** Add `Error` raw action to represent invalid actions.
-- **[Breaking]** Add required `Cfg.main` block to ensure the CFG is non-empty.
+- **[Breaking change]** Add `End` raw action.
 
 ## Typescript
 

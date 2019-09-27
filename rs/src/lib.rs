@@ -204,9 +204,9 @@ pub enum CfgBlock {
   With(cfg_blocks::CfgWithBlock),
 }
 
-/// Similar to `Action` but no `Jump`, `If` `Throw`, `Return`, `Try`,
-/// `WaitForFrame`, `WaitForFrame2` and `With`, also different `DefineFunction`
-/// and `DefineFunction2`.
+/// Similar to `Action` but no `End`, `Error , `Jump`, `If` `Throw`, `Return`,
+/// `Try`, `WaitForFrame`, `WaitForFrame2` and `With`, also different
+/// `DefineFunction` and `DefineFunction2`.
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "action", rename_all = "kebab-case")]
 pub enum CfgAction {
