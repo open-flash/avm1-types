@@ -186,10 +186,12 @@ pub enum Action {
   // 0x9f
 }
 
+// TODO: Use a `NonEmptyVec` and custom serializer
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct Cfg {
-  pub blocks: Vec<CfgBlock>,
+  pub head: Box<CfgBlock>,
+  pub tail: Vec<CfgBlock>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -316,7 +318,7 @@ pub enum CfgAction {
 mod tests {
   use std::path::Path;
 
-  use ::test_generator::test_resources;
+  use test_generator::test_resources;
 
   use crate::Cfg;
 
@@ -350,7 +352,7 @@ mod tests {
 
 #[cfg(test)]
 mod e2e_raw_tests {
-  use ::test_generator::test_resources;
+  use test_generator::test_resources;
 
   use super::*;
 

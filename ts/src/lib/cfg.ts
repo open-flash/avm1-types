@@ -4,12 +4,14 @@ import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { $CfgBlock, CfgBlock } from "./cfg-block";
 
 export interface Cfg {
-  blocks: CfgBlock[];
+  head: CfgBlock;
+  tail: CfgBlock[];
 }
 
 export const $Cfg: DocumentIoType<Cfg> = new DocumentType<Cfg>(() => ({
   properties: {
-    blocks: {type: new ArrayType({itemType: $CfgBlock, maxLength: Infinity})},
+    head: {type: $CfgBlock},
+    tail: {type: new ArrayType({itemType: $CfgBlock, maxLength: Infinity})},
   },
   changeCase: CaseStyle.SnakeCase,
 }));
