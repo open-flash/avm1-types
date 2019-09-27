@@ -52,9 +52,9 @@ const lib: LibTarget = {
   },
   typedoc: {
     dir: "typedoc",
-    name: "AVM1 Parser",
+    name: "AVM1 Types",
     deploy: {
-      repository: "git@github.com:open-flash/avm1-parser.git",
+      repository: "git@github.com:open-flash/avm1-types.git",
       branch: "gh-pages",
     },
   },

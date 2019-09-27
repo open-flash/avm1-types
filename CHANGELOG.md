@@ -1,3 +1,9 @@
+# Next
+
+## Typescript
+
+- **[Fix]** Fix Typedoc title.
+
 # 0.9.0 (2019-09-27)
 
 - **[Breaking change]** Rename to `avm1-types` (from `avm1-tree`).
