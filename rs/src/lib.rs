@@ -10,6 +10,12 @@ mod helpers;
 mod value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct InvalidActionError {
+  pub message: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(tag = "action", rename_all = "kebab-case")]
 pub enum Action {
   Unknown(actions::UnknownAction),

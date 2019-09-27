@@ -6,6 +6,8 @@ use serde::{Deserialize, Serialize};
 pub struct CfgErrorBlock {
   pub label: CfgLabel,
   pub actions: Vec<CfgAction>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub error: Option<crate::InvalidActionError>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]

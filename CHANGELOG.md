@@ -2,6 +2,7 @@
 
 - **[Breaking change]** Add `Error` raw action to represent invalid actions.
 - **[Breaking change]** Add `End` raw action.
+- **[Feature]** Add error information to `CfgErrorBlock`.
 
 ## Typescript
 
