@@ -1,4 +1,4 @@
-use avm1_tree::Action;
+use avm1_types::Action;
 use std::io::Read;
 
 fn main() {

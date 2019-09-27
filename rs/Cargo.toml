@@ -1,22 +1,22 @@
 [package]
-name = "avm1-tree"
+name = "avm1-types"
 version = "0.8.0"
 authors = ["Charles Samborski <demurgos@demurgos.net>"]
-description = "Abstract Syntax Tree (AST) for AVM1"
-documentation = "https://github.com/open-flash/avm1-tree"
-homepage = "https://github.com/open-flash/avm1-tree"
-repository = "https://github.com/open-flash/avm1-tree"
+description = "Types for the Flash ActionScript Virtual Machine (AVM1)"
+documentation = "https://github.com/open-flash/avm1-types"
+homepage = "https://github.com/open-flash/avm1-types"
+repository = "https://github.com/open-flash/avm1-types"
 readme = "./README.md"
 keywords = ["ast", "swf", "avm1"]
 license = "MIT/Apache-2.0"
 edition = "2018"
 
 [lib]
-name = "avm1_tree"
+name = "avm1_types"
 path = "src/lib.rs"
 
 [[bin]]
-name = "avm1-tree"
+name = "avm1-types"
 path = "src/main.rs"
 
 [dependencies]

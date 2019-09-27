@@ -1,5 +1,6 @@
 # Next
 
+- **[Breaking change]** Rename to `avm1-types` (from `avm1-tree`).
 - **[Breaking change]** Add `Error` raw action to represent invalid actions.
 - **[Breaking change]** Add `End` raw action.
 - **[Breaking change]** Update `Cfg` representation to ensure it is non-empty.

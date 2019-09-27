@@ -1,8 +1,8 @@
-# AVM1 Tree (Rust)
+# AVM1 Types (Rust)
 
-[![crates.io](https://img.shields.io/crates/v/avm1-tree.svg)](https://crates.io/crates/avm1-tree)
-[![GitHub repository](https://img.shields.io/badge/Github-open--flash%2Favm1--tree-blue.svg)](https://github.com/open-flash/avm1-tree)
-[![Build status](https://img.shields.io/travis/com/open-flash/avm1-tree/master.svg)](https://travis-ci.com/open-flash/avm1-tree)
+[![crates.io](https://img.shields.io/crates/v/avm1-types.svg)](https://crates.io/crates/avm1-types)
+[![GitHub repository](https://img.shields.io/badge/Github-open--flash%2Favm1--types-blue.svg)](https://github.com/open-flash/avm1-types)
+[![Build status](https://img.shields.io/travis/com/open-flash/avm1-types/master.svg)](https://travis-ci.com/open-flash/avm1-types)
 
 Rust implementation of the AVM1 Abstract Syntax Tree (AST).
 
