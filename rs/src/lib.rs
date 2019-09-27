@@ -14,6 +14,7 @@ mod value;
 pub enum Action {
   Unknown(actions::UnknownAction),
   Error(actions::Error),
+  End,
   Add,
   And,
   CastOp,

@@ -13,6 +13,7 @@ const JSON_READER: JsonReader = new JsonReader();
 const sampleNames: ReadonlyArray<string> = [
   "define-function",
   "trace",
+  "end",
   "error",
   "error-with-message",
 ];

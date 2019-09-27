@@ -23,6 +23,7 @@ export { $DefineLocal2, DefineLocal2 } from "./define-local2";
 export { $Delete, Delete } from "./delete";
 export { $Delete2, Delete2 } from "./delete2";
 export { $Divide, Divide } from "./divide";
+export { $End, End } from "./end";
 export { $EndDrag, EndDrag } from "./end-drag";
 export { $Enumerate, Enumerate } from "./enumerate";
 export { $Enumerate2, Enumerate2 } from "./enumerate2";

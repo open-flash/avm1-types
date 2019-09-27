@@ -1,6 +1,7 @@
 # Next
 
 - **[Breaking change]** Add `Error` raw action to represent invalid actions.
+- **[Breaking]** Add required `Cfg.main` block to ensure the CFG is non-empty.
 
 # 0.8.0 (2019-09-24)
 

@@ -29,6 +29,7 @@ export type Action =
   | actions.Delete
   | actions.Delete2
   | actions.Divide
+  | actions.End
   | actions.EndDrag
   | actions.Enumerate
   | actions.Enumerate2
@@ -135,6 +136,7 @@ export const $Action: TaggedUnionType<Action> = new TaggedUnionType<Action>(() =
     actions.$Delete,
     actions.$Delete2,
     actions.$Divide,
+    actions.$End,
     actions.$EndDrag,
     actions.$Enumerate,
     actions.$Enumerate2,

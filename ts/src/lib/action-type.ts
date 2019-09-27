@@ -4,6 +4,7 @@ import { TsEnumType } from "kryo/types/ts-enum";
 export enum ActionType {
   Unknown = 0x100,
   Error = 0x101,
+  End = 0x00,
   Add = 0x0a,
   Add2 = 0x47,
   And = 0x10,
