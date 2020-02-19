@@ -2,10 +2,15 @@ pub use crate::action::*;
 use crate::error::InvalidActionError;
 use crate::CatchTarget;
 use crate::{action, Parameter};
-use ::serde::{Deserialize, Serialize};
+#[cfg(feature = "use-serde")]
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(tag = "action", rename_all = "kebab-case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize, Deserialize),
+  serde(tag = "action", rename_all = "kebab-case")
+)]
 pub enum Action {
   Add,
   Add2,
@@ -113,8 +118,8 @@ pub enum Action {
   With(With),
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct DefineFunction {
   // Empty string if anonymous
   pub name: String,
@@ -122,8 +127,8 @@ pub struct DefineFunction {
   pub body_size: u16,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct DefineFunction2 {
   // Empty string if anonymous
   pub name: String,
@@ -141,59 +146,57 @@ pub struct DefineFunction2 {
   pub body_size: u16,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Error {
-  #[serde(skip_serializing_if = "Option::is_none")]
+  #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub error: Option<InvalidActionError>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct If {
   pub offset: i16,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Jump {
   pub offset: i16,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CatchBlock {
   pub target: CatchTarget,
   pub size: u16,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Try {
   pub r#try: u16,
-  #[serde(skip_serializing_if = "Option::is_none")]
+  #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub catch: Option<CatchBlock>,
-  #[serde(skip_serializing_if = "Option::is_none")]
+  #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub finally: Option<u16>,
 }
 
-// Action code 0x8a
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct WaitForFrame {
   pub frame: u16,
   pub skip: usize,
 }
 
-// Action code 0x8d
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct WaitForFrame2 {
   pub skip: usize,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct With {
   pub size: u16,
 }

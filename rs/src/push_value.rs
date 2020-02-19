@@ -1,8 +1,13 @@
 use super::float_is::Is;
+#[cfg(feature = "use-serde")]
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
-#[serde(tag = "type", content = "value", rename_all = "kebab-case")]
+#[derive(Debug)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize, Deserialize),
+  serde(tag = "type", content = "value", rename_all = "kebab-case")
+)]
 pub enum PushValue {
   Boolean(bool),
   Constant(u16),
@@ -41,6 +46,7 @@ impl ::std::cmp::Eq for PushValue {}
 #[cfg(test)]
 mod tests {
   use super::*;
+  #[cfg(feature = "use-serde")]
   use ::test_generator::test_resources;
 
   #[test]
@@ -58,6 +64,7 @@ mod tests {
     assert_eq!(PushValue::Undefined, PushValue::Undefined);
   }
 
+  #[cfg(feature = "use-serde")]
   #[test_resources("../tests/*.json")]
   fn test_parse_json(path: &str) {
     let file = ::std::fs::File::open(path).unwrap();

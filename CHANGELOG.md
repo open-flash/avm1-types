@@ -6,6 +6,7 @@
 
 ## Rust
 
+- **[Feature]** Make `serde` optional (enabled by default).
 - **[Fix]** Add missing `StrictMode` raw action.
 - **[Fix]** Drop unused `serde_json` dependency.
 

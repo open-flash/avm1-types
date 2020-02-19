@@ -1,7 +1,8 @@
+#[cfg(feature = "use-serde")]
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct InvalidActionError {
   pub message: String,
 }

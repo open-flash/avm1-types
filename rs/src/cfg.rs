@@ -1,32 +1,37 @@
 pub use crate::action::*;
 use crate::error::InvalidActionError;
 use crate::{action, CatchTarget, Parameter};
+#[cfg(feature = "use-serde")]
 use serde::{Deserialize, Serialize};
 use vec1::Vec1;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Cfg {
   pub blocks: Vec1<CfgBlock>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CfgBlock {
   pub label: CfgLabel,
   pub actions: Vec<Action>,
   pub flow: CfgFlow,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CfgLabel(pub String);
 
 /// Similar to `Action` but no `End`, `Error , `Jump`, `If` `Throw`, `Return`,
 /// `Try`, `WaitForFrame`, `WaitForFrame2` and `With`, also different
 /// `DefineFunction` and `DefineFunction2`.
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(tag = "action", rename_all = "kebab-case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize, Deserialize),
+  serde(tag = "action", rename_all = "kebab-case")
+)]
 pub enum Action {
   Add,
   Add2,
@@ -124,16 +129,16 @@ pub enum Action {
   TypeOf,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct DefineFunction {
   pub name: String,
   pub parameters: Vec<String>,
   pub body: Cfg,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct DefineFunction2 {
   // Empty string if anonymous
   pub name: String,
@@ -151,8 +156,12 @@ pub struct DefineFunction2 {
   pub body: Cfg,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(tag = "type", rename_all = "kebab-case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize, Deserialize),
+  serde(tag = "type", rename_all = "kebab-case")
+)]
 pub enum CfgFlow {
   Error(Error),
   If(If),
@@ -165,60 +174,60 @@ pub enum CfgFlow {
   With(With),
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Error {
-  #[serde(skip_serializing_if = "Option::is_none")]
+  #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub error: Option<InvalidActionError>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct If {
   pub true_target: Option<CfgLabel>,
   pub false_target: Option<CfgLabel>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Simple {
   pub next: Option<CfgLabel>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CatchBlock {
   pub target: CatchTarget,
   pub body: Cfg,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Try {
   pub r#try: Cfg,
-  #[serde(skip_serializing_if = "Option::is_none")]
+  #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub catch: Option<CatchBlock>,
-  #[serde(skip_serializing_if = "Option::is_none")]
+  #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub finally: Option<Cfg>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct WaitForFrame {
   pub frame: u16,
   pub ready_target: Option<CfgLabel>,
   pub loading_target: Option<CfgLabel>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct WaitForFrame2 {
   pub ready_target: Option<CfgLabel>,
   pub loading_target: Option<CfgLabel>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct With {
   pub body: Cfg,
 }

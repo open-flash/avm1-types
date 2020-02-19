@@ -1,36 +1,46 @@
 pub use self::push_value::PushValue;
+#[cfg(feature = "use-serde")]
 use serde::{Deserialize, Serialize};
 pub mod action;
 pub mod cfg;
 pub mod error;
 mod float_is;
+#[cfg(feature = "use-serde")]
 mod helpers;
 mod push_value;
 pub mod raw;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(tag = "type", content = "target", rename_all = "kebab-case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize, Deserialize),
+  serde(tag = "type", content = "target", rename_all = "kebab-case")
+)]
 pub enum CatchTarget {
   Register(u8),
   Variable(String),
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "kebab-case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize, Deserialize),
+  serde(rename_all = "kebab-case")
+)]
 pub enum GetUrl2Method {
   None,
   Get,
   Post,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
+#[derive(Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Parameter {
   pub register: u8,
   pub name: String,
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature = "use-serde"))]
 mod tests {
   use crate::cfg::Cfg;
   use std::path::Path;
@@ -64,7 +74,7 @@ mod tests {
   }
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature = "use-serde"))]
 mod e2e_raw_tests {
   use crate::raw::Action;
   use test_generator::test_resources;
