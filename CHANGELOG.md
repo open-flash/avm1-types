@@ -1,5 +1,6 @@
 # Next
 
+- **[Breaking change]** Refactor types to better separate `raw` from `cfg` types.
 - **[Breaking change]** Rename `Value` to `PushValue`.
 - **[Breaking change]** Revert to using lists for `Cfg` content.
 

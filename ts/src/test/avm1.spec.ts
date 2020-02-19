@@ -3,7 +3,7 @@ import fs from "fs";
 import { JsonReader } from "kryo/readers/json";
 import { JsonValueWriter } from "kryo/writers/json-value";
 import sysPath from "path";
-import { $Cfg, Cfg } from "../lib/cfg";
+import { $Cfg, Cfg } from "../lib/cfg/cfg";
 import meta from "./meta.js";
 import { readTextFile } from "./utils";
 

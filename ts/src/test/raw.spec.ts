@@ -2,7 +2,7 @@ import chai from "chai";
 import fs from "fs";
 import { JsonReader } from "kryo/readers/json";
 import sysPath from "path";
-import { $Action, Action } from "../lib/action";
+import { $Action, Action } from "../lib/raw/action";
 import meta from "./meta.js";
 
 const PROJECT_ROOT: string = sysPath.join(meta.dirname, "..", "..", "..");
@@ -16,8 +16,8 @@ const sampleNames: ReadonlyArray<string> = [
   "error",
   "error-with-message",
   "trace",
-  "unknown",
-  "unknown-with-data",
+  "raw",
+  "raw-with-data",
 ];
 
 describe("$Action.read", function () {

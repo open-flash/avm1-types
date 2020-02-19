@@ -2,7 +2,7 @@ import { CaseStyle } from "kryo/case-style";
 import { TsEnumType } from "kryo/types/ts-enum";
 
 export enum ActionType {
-  Unknown = 0x100,
+  Raw = 0x100,
   Error = 0x101,
   End = 0x00,
   Add = 0x0a,
