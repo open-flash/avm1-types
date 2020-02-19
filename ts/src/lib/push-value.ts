@@ -1,7 +1,7 @@
 import { TaggedUnionType } from "kryo/types/tagged-union";
-import * as values from "./values/index";
+import * as values from "./push-values/index";
 
-export type Value =
+export type PushValue =
   values.Boolean
   | values.String
   | values.Constant
@@ -12,7 +12,7 @@ export type Value =
   | values.Register
   | values.Undefined;
 
-export const $Value: TaggedUnionType<Value> = new TaggedUnionType<Value>(() => ({
+export const $PushValue: TaggedUnionType<PushValue> = new TaggedUnionType<PushValue>(() => ({
   variants: [
     values.$Boolean,
     values.$String,

@@ -1,7 +1,7 @@
 import { CaseStyle } from "kryo/case-style";
 import { TsEnumType } from "kryo/types/ts-enum";
 
-export enum ValueType {
+export enum PushValueType {
   Boolean,
   Constant,
   Float32,
@@ -13,7 +13,7 @@ export enum ValueType {
   Undefined,
 }
 
-export const $ValueType: TsEnumType<ValueType> = new TsEnumType<ValueType>({
-  enum: ValueType,
+export const $PushValueType: TsEnumType<PushValueType> = new TsEnumType<PushValueType>({
+  enum: PushValueType,
   changeCase: CaseStyle.KebabCase,
 });

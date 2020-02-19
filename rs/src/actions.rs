@@ -1,7 +1,7 @@
 use ::serde::{Deserialize, Serialize};
 
 use super::helpers::{buffer_to_hex, hex_to_buffer};
-use super::value::Value;
+use super::push_value::PushValue;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
@@ -136,7 +136,7 @@ pub struct Jump {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct Push {
-  pub values: Vec<Value>,
+  pub values: Vec<PushValue>,
 }
 
 // Action code 0x8b

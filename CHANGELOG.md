@@ -1,5 +1,7 @@
 # Next
 
+- **[Breaking change]** Rename `Value` to `PushValue`.
+
 ## Rust
 
 - **[Fix]** Add missing `StrictMode` raw action.

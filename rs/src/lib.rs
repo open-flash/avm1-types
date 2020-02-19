@@ -1,13 +1,13 @@
 use serde::{Deserialize, Serialize};
 
-pub use self::value::Value;
+pub use self::push_value::PushValue;
 
 pub mod actions;
 pub mod cfg_actions;
 pub mod cfg_blocks;
 mod float_is;
 mod helpers;
-mod value;
+mod push_value;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
