@@ -1,4 +1,4 @@
-# Next
+# 0.10.0 (2020-02-19)
 
 - **[Breaking change]** Refactor types to better separate `raw` from `cfg` types.
 - **[Breaking change]** Rename `Value` to `PushValue`.
