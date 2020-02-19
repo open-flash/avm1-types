@@ -63,6 +63,6 @@ mod tests {
     let file = ::std::fs::File::open(path).unwrap();
     let reader = ::std::io::BufReader::new(file);
     // Check that we can parse the test case without issues
-    serde_json::from_reader::<_, PushValue>(reader).unwrap();
+    serde_json_v8::from_reader::<_, PushValue>(reader).unwrap();
   }
 }

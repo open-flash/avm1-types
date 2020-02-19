@@ -5,6 +5,7 @@
 ## Rust
 
 - **[Fix]** Add missing `StrictMode` raw action.
+- **[Fix]** Drop unused `serde_json` dependency.
 
 ## Typescript
 
