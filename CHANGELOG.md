@@ -1,6 +1,7 @@
 # Next
 
 - **[Breaking change]** Rename `Value` to `PushValue`.
+- **[Breaking change]** Revert to using lists for `Cfg` content.
 
 ## Rust
 

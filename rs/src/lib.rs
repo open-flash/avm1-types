@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 pub use self::push_value::PushValue;
+use vec1::Vec1;
 
 pub mod actions;
 pub mod cfg_actions;
@@ -124,12 +125,10 @@ pub enum Action {
   With(actions::With),
 }
 
-// TODO: Use a `NonEmptyVec` and custom serializer
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct Cfg {
-  pub head: Box<CfgBlock>,
-  pub tail: Vec<CfgBlock>,
+  pub blocks: Vec1<CfgBlock>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]

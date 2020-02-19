@@ -4,14 +4,13 @@ import { DocumentIoType, DocumentType } from "kryo/types/document";
 import { $CfgBlock, CfgBlock } from "./cfg-block";
 
 export interface Cfg {
-  head: CfgBlock;
-  tail: CfgBlock[];
+  // TODO: Type it as being non-empty
+  blocks: CfgBlock[];
 }
 
 export const $Cfg: DocumentIoType<Cfg> = new DocumentType<Cfg>(() => ({
   properties: {
-    head: {type: $CfgBlock},
-    tail: {type: new ArrayType({itemType: $CfgBlock, maxLength: Infinity})},
+    blocks: {type: new ArrayType({itemType: $CfgBlock, minLength: 1, maxLength: Infinity})},
   },
   changeCase: CaseStyle.SnakeCase,
 }));
