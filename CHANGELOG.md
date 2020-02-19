@@ -1,5 +1,9 @@
 # Next
 
+## Rust
+
+- **[Fix]** Add missing `StrictMode` raw action.
+
 ## Typescript
 
 - **[Fix]** Fix Typedoc title.
