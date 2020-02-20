@@ -9,6 +9,8 @@ import { End as RawEnd } from "../raw/actions/end";
 import { Error as RawError } from "../raw/actions/error";
 import { If as RawIf } from "../raw/actions/if";
 import { Jump as RawJump } from "../raw/actions/jump";
+import { Return as RawReturn } from "../raw/actions/return";
+import { Throw as RawThrow } from "../raw/actions/throw";
 import { Try as RawTry } from "../raw/actions/try";
 import { WaitForFrame as RawWaitForFrame } from "../raw/actions/wait-for-frame";
 import { WaitForFrame2 as RawWaitForFrame2 } from "../raw/actions/wait-for-frame2";
@@ -24,6 +26,8 @@ export type Action =
     | RawError
     | RawIf
     | RawJump
+    | RawReturn
+    | RawThrow
     | RawTry
     | RawWaitForFrame
     | RawWaitForFrame2
@@ -44,10 +48,11 @@ export const $Action: TaggedUnionType<Action> = new TaggedUnionType<Action>(() =
         break;
       case ActionType.End:
       case ActionType.Error:
+      case ActionType.If:
       case ActionType.Jump:
       case ActionType.Return:
-      case ActionType.Try:
       case ActionType.Throw:
+      case ActionType.Try:
       case ActionType.WaitForFrame:
       case ActionType.WaitForFrame2:
       case ActionType.With:
