@@ -1,6 +1,7 @@
 import { CaseStyle } from "kryo";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
 import { LiteralType } from "kryo/lib/literal.js";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+
 import { ActionBase } from "../../action-base.js";
 import { $ActionType, ActionType } from "../../action-type.js";
 import { $InvalidActionError, InvalidActionError } from "../../invalid-action-error.js";

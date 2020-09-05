@@ -4,6 +4,7 @@
 
 - **[Breaking change]** Update to native ESM.
 - **[Fix]** Fix CFG `Action` type.
+- **[Internal]** Switch from `tslint` to `eslint`.
 
 # 0.10.0 (2020-02-19)
 

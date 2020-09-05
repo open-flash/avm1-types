@@ -1,9 +1,10 @@
-import { $Boolean } from "kryo/lib/boolean.js";
 import { CaseStyle } from "kryo";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { $Boolean } from "kryo/lib/boolean.js";
 import { IntegerType } from "kryo/lib/integer.js";
 import { LiteralType } from "kryo/lib/literal.js";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
 import { UintSize } from "semantic-types";
+
 import { ActionBase } from "../action-base.js";
 import { $ActionType, ActionType } from "../action-type.js";
 

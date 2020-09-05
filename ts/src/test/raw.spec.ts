@@ -1,9 +1,10 @@
 import chai from "chai";
 import fs from "fs";
+import { JSON_READER } from "kryo-json/lib/json-reader.js";
 import sysPath from "path";
+
 import { $Action, Action } from "../lib/raw/action.js";
 import meta from "./meta.js";
-import { JSON_READER } from "kryo-json/lib/json-reader.js";
 
 const PROJECT_ROOT: string = sysPath.join(meta.dirname, "..");
 const TEST_SAMPLES_ROOT: string = sysPath.join(PROJECT_ROOT, "..", "tests");

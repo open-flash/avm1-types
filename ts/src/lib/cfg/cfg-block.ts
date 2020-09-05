@@ -1,6 +1,7 @@
 import { CaseStyle } from "kryo";
 import { ArrayType } from "kryo/lib/array.js";
 import { RecordIoType, RecordType } from "kryo/lib/record.js";
+
 import { $Action, Action } from "./action.js";
 import { $CfgFlow, CfgFlow } from "./cfg-flow.js";
 import { $CfgLabel, CfgLabel } from "./cfg-label.js";
