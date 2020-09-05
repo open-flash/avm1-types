@@ -1,11 +1,11 @@
-import { $Uint16 } from "kryo/builtins/uint16";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
+import { $Uint16 } from "kryo/lib/integer.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
 import { Uint16 } from "semantic-types";
-import { ActionBase } from "../../action-base";
-import { $ActionType, ActionType } from "../../action-type";
-import { $CatchBlock, CatchBlock } from "../catch-block";
+import { ActionBase } from "../../action-base.js";
+import { $ActionType, ActionType } from "../../action-type.js";
+import { $CatchBlock, CatchBlock } from "../catch-block.js";
 
 export interface Try extends ActionBase {
   action: ActionType.Try;
@@ -14,7 +14,7 @@ export interface Try extends ActionBase {
   finally?: Uint16;
 }
 
-export const $Try: DocumentIoType<Try> = new DocumentType<Try>(() => ({
+export const $Try: RecordIoType<Try> = new RecordType<Try>(() => ({
   properties: {
     action: {type: new LiteralType({type: $ActionType, value: ActionType.Try as ActionType.Try})},
     try: {type: $Uint16},

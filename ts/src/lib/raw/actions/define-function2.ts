@@ -1,15 +1,15 @@
-import { $Boolean } from "kryo/builtins/boolean";
-import { $Uint16 } from "kryo/builtins/uint16";
-import { $Uint8 } from "kryo/builtins/uint8";
-import { CaseStyle } from "kryo/case-style";
-import { ArrayType } from "kryo/types/array";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { Ucs2StringType } from "kryo/types/ucs2-string";
+import { $Boolean } from "kryo/lib/boolean.js";
+import { $Uint16 } from "kryo/lib/integer.js";
+import { $Uint8 } from "kryo/lib/integer.js";
+import { CaseStyle } from "kryo";
+import { ArrayType } from "kryo/lib/array.js";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { Ucs2StringType } from "kryo/lib/ucs2-string.js";
 import { Uint16, Uint8 } from "semantic-types";
-import { ActionBase } from "../../action-base";
-import { $ActionType, ActionType } from "../../action-type";
-import { $Parameter, Parameter } from "../../parameter";
+import { ActionBase } from "../../action-base.js";
+import { $ActionType, ActionType } from "../../action-type.js";
+import { $Parameter, Parameter } from "../../parameter.js";
 
 export interface DefineFunction2 extends ActionBase {
   action: ActionType.DefineFunction2;
@@ -28,7 +28,7 @@ export interface DefineFunction2 extends ActionBase {
   bodySize: Uint16;
 }
 
-export const $DefineFunction2: DocumentIoType<DefineFunction2> = new DocumentType<DefineFunction2>(() => ({
+export const $DefineFunction2: RecordIoType<DefineFunction2> = new RecordType<DefineFunction2>(() => ({
   properties: {
     action: {
       type: new LiteralType({

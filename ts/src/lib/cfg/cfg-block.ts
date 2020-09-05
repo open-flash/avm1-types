@@ -1,9 +1,9 @@
-import { CaseStyle } from "kryo/case-style";
-import { ArrayType } from "kryo/types/array";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { $Action, Action } from "./action";
-import { $CfgFlow, CfgFlow } from "./cfg-flow";
-import { $CfgLabel, CfgLabel } from "./cfg-label";
+import { CaseStyle } from "kryo";
+import { ArrayType } from "kryo/lib/array.js";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { $Action, Action } from "./action.js";
+import { $CfgFlow, CfgFlow } from "./cfg-flow.js";
+import { $CfgLabel, CfgLabel } from "./cfg-label.js";
 
 export interface CfgBlock {
   label: CfgLabel;
@@ -11,7 +11,7 @@ export interface CfgBlock {
   flow: CfgFlow;
 }
 
-export const $CfgBlock: DocumentIoType<CfgBlock> = new DocumentType<CfgBlock>(() => ({
+export const $CfgBlock: RecordIoType<CfgBlock> = new RecordType<CfgBlock>(() => ({
   properties: {
     label: {type: $CfgLabel},
     actions: {type: new ArrayType({itemType: $Action, maxLength: Infinity})},

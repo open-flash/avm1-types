@@ -1,12 +1,12 @@
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { Ucs2StringType } from "kryo/types/ucs2-string";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { Ucs2StringType } from "kryo/lib/ucs2-string.js";
 
 export interface InvalidActionError {
   message: string;
 }
 
-export const $InvalidActionError: DocumentIoType<InvalidActionError> = new DocumentType<InvalidActionError>({
+export const $InvalidActionError: RecordIoType<InvalidActionError> = new RecordType<InvalidActionError>({
   properties: {
     message: {type: new Ucs2StringType({maxLength: Infinity})},
   },

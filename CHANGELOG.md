@@ -2,6 +2,7 @@
 
 ## TypeScript
 
+- **[Breaking change]** Update to native ESM.
 - **[Fix]** Fix CFG `Action` type.
 
 # 0.10.0 (2020-02-19)

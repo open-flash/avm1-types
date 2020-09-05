@@ -1,15 +1,15 @@
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { Ucs2StringType } from "kryo/types/ucs2-string";
-import { $CatchTargetType, CatchTargetType } from "./_type";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { Ucs2StringType } from "kryo/lib/ucs2-string.js";
+import { $CatchTargetType, CatchTargetType } from "./_type.js";
 
 export interface Variable {
   type: CatchTargetType.Variable;
   target: string;
 }
 
-export const $Variable: DocumentIoType<Variable> = new DocumentType<Variable>({
+export const $Variable: RecordIoType<Variable> = new RecordType<Variable>({
   properties: {
     type: {
       type: new LiteralType({

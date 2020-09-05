@@ -1,14 +1,14 @@
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { ActionBase } from "../action-base";
-import { $ActionType, ActionType } from "../action-type";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { ActionBase } from "../action-base.js";
+import { $ActionType, ActionType } from "../action-type.js";
 
 export interface Add extends ActionBase {
   action: ActionType.Add;
 }
 
-export const $Add: DocumentIoType<Add> = new DocumentType<Add>({
+export const $Add: RecordIoType<Add> = new RecordType<Add>({
   properties: {
     action: {type: new LiteralType({type: $ActionType, value: ActionType.Add as ActionType.Add})},
   },

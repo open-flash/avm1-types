@@ -1,5 +1,5 @@
-import { TaggedUnionType } from "kryo/types/tagged-union";
-import * as values from "./push-values/index";
+import { TaggedUnionType } from "kryo/lib/tagged-union.js";
+import * as values from "./push-values/index.js";
 
 export type PushValue =
   values.Boolean

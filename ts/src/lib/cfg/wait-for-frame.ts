@@ -1,10 +1,10 @@
-import { $Uint16 } from "kryo/builtins/uint16";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
+import { $Uint16 } from "kryo/lib/integer.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
 import { Uint16 } from "semantic-types";
-import { $CfgBlockType, CfgFlowType } from "./cfg-flow-type";
-import { $NullableCfgLabel, NullableCfgLabel } from "./cfg-label";
+import { $CfgBlockType, CfgFlowType } from "./cfg-flow-type.js";
+import { $NullableCfgLabel, NullableCfgLabel } from "./cfg-label.js";
 
 export interface WaitForFrame {
   type: CfgFlowType.WaitForFrame;
@@ -14,7 +14,7 @@ export interface WaitForFrame {
 }
 
 // tslint:disable-next-line:max-line-length
-export const $WaitForFrame: DocumentIoType<WaitForFrame> = new DocumentType<WaitForFrame>(() => ({
+export const $WaitForFrame: RecordIoType<WaitForFrame> = new RecordType<WaitForFrame>(() => ({
   properties: {
     type: {
       type: new LiteralType({

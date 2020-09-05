@@ -1,5 +1,5 @@
-import { TaggedUnionType } from "kryo/types/tagged-union";
-import * as actions from "./actions";
+import { TaggedUnionType } from "kryo/lib/tagged-union.js";
+import * as actions from "./actions/index.js";
 
 export type Action =
   actions.Raw

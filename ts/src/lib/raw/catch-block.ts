@@ -1,15 +1,15 @@
-import { $Uint16 } from "kryo/builtins/uint16";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
+import { $Uint16 } from "kryo/lib/integer.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
 import { Uint16 } from "semantic-types";
-import { $CatchTarget, CatchTarget } from "../catch-target";
+import { $CatchTarget, CatchTarget } from "../catch-target.js";
 
 export interface CatchBlock {
   target: CatchTarget;
   size: Uint16;
 }
 
-export const $CatchBlock: DocumentIoType<CatchBlock> = new DocumentType<CatchBlock>(() => ({
+export const $CatchBlock: RecordIoType<CatchBlock> = new RecordType<CatchBlock>(() => ({
   properties: {
     target: {type: $CatchTarget},
     size: {type: $Uint16},

@@ -1,5 +1,5 @@
-import { TaggedUnionType } from "kryo/types/tagged-union";
-import * as catchTargets from "./catch-targets/index";
+import { TaggedUnionType } from "kryo/lib/tagged-union.js";
+import * as catchTargets from "./catch-targets/index.js";
 
 export type CatchTarget = catchTargets.Register | catchTargets.Variable;
 

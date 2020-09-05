@@ -1,10 +1,10 @@
-import { $Boolean } from "kryo/builtins/boolean";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { ActionBase } from "../action-base";
-import { $ActionType, ActionType } from "../action-type";
-import { $GetUrl2Method, GetUrl2Method } from "../get-url2-method";
+import { $Boolean } from "kryo/lib/boolean.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { ActionBase } from "../action-base.js";
+import { $ActionType, ActionType } from "../action-type.js";
+import { $GetUrl2Method, GetUrl2Method } from "../get-url2-method.js";
 
 export interface GetUrl2 extends ActionBase {
   action: ActionType.GetUrl2;
@@ -13,7 +13,7 @@ export interface GetUrl2 extends ActionBase {
   loadVariables: boolean;
 }
 
-export const $GetUrl2: DocumentIoType<GetUrl2> = new DocumentType<GetUrl2>({
+export const $GetUrl2: RecordIoType<GetUrl2> = new RecordType<GetUrl2>({
   properties: {
     action: {type: new LiteralType({type: $ActionType, value: ActionType.GetUrl2 as ActionType.GetUrl2})},
     method: {type: $GetUrl2Method},

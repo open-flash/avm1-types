@@ -1,13 +1,13 @@
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { $CfgBlockType, CfgFlowType } from "./cfg-flow-type";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { $CfgBlockType, CfgFlowType } from "./cfg-flow-type.js";
 
 export interface Throw {
   type: CfgFlowType.Throw;
 }
 
-export const $Throw: DocumentIoType<Throw> = new DocumentType<Throw>(() => ({
+export const $Throw: RecordIoType<Throw> = new RecordType<Throw>(() => ({
   properties: {
     type: {type: new LiteralType({type: $CfgBlockType, value: CfgFlowType.Throw as CfgFlowType.Throw})},
   },

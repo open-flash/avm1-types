@@ -1,22 +1,22 @@
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { TaggedUnionType } from "kryo/types/tagged-union";
-import { ActionType } from "../action-type";
-import { $Action as $RawAction, Action as RawAction } from "../raw/action";
-import { DefineFunction as RawDefineFunction } from "../raw/actions/define-function";
-import { DefineFunction2 as RawDefineFunction2 } from "../raw/actions/define-function2";
-import { End as RawEnd } from "../raw/actions/end";
-import { Error as RawError } from "../raw/actions/error";
-import { If as RawIf } from "../raw/actions/if";
-import { Jump as RawJump } from "../raw/actions/jump";
-import { Return as RawReturn } from "../raw/actions/return";
-import { Throw as RawThrow } from "../raw/actions/throw";
-import { Try as RawTry } from "../raw/actions/try";
-import { WaitForFrame as RawWaitForFrame } from "../raw/actions/wait-for-frame";
-import { WaitForFrame2 as RawWaitForFrame2 } from "../raw/actions/wait-for-frame2";
-import { With as RawWith } from "../raw/actions/with";
-import { $DefineFunction, DefineFunction } from "./actions/define-function";
-import { $DefineFunction2, DefineFunction2 } from "./actions/define-function2";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { TaggedUnionType } from "kryo/lib/tagged-union.js";
+import { ActionType } from "../action-type.js";
+import { $Action as $RawAction, Action as RawAction } from "../raw/action.js";
+import { DefineFunction as RawDefineFunction } from "../raw/actions/define-function.js";
+import { DefineFunction2 as RawDefineFunction2 } from "../raw/actions/define-function2.js";
+import { End as RawEnd } from "../raw/actions/end.js";
+import { Error as RawError } from "../raw/actions/error.js";
+import { If as RawIf } from "../raw/actions/if.js";
+import { Jump as RawJump } from "../raw/actions/jump.js";
+import { Return as RawReturn } from "../raw/actions/return.js";
+import { Throw as RawThrow } from "../raw/actions/throw.js";
+import { Try as RawTry } from "../raw/actions/try.js";
+import { WaitForFrame as RawWaitForFrame } from "../raw/actions/wait-for-frame.js";
+import { WaitForFrame2 as RawWaitForFrame2 } from "../raw/actions/wait-for-frame2.js";
+import { With as RawWith } from "../raw/actions/with.js";
+import { $DefineFunction, DefineFunction } from "./actions/define-function.js";
+import { $DefineFunction2, DefineFunction2 } from "./actions/define-function2.js";
 
 export type Action =
   Exclude<RawAction,
@@ -36,7 +36,7 @@ export type Action =
   | DefineFunction2;
 
 export const $Action: TaggedUnionType<Action> = new TaggedUnionType<Action>(() => {
-  const variants: DocumentType<Action>[] = [];
+  const variants: RecordType<Action>[] = [];
   for (const $rawAction of $RawAction.variants) {
     const $rawActionType: LiteralType<ActionType> = $rawAction.properties.action.type as any;
     switch ($rawActionType.value) {
@@ -59,7 +59,7 @@ export const $Action: TaggedUnionType<Action> = new TaggedUnionType<Action>(() =
         // These raw actions have no CFG equivalent.
         break;
       default:
-        variants.push($rawAction as DocumentIoType<Action>);
+        variants.push($rawAction as RecordIoType<Action>);
         break;
     }
   }

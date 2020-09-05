@@ -20,14 +20,13 @@
     "inlineSources": false,
     "isolatedModules": false,
     "lib": [
-      "es2017",
-      "esnext.asynciterable"
+      "es2017"
     ],
-    "locale": "en-us",
-    "module": "commonjs",
+    "locale": "en-US",
+    "module": "esNext",
     "moduleResolution": "node",
     "newLine": "lf",
-    "noEmit": false,
+    "noEmit": true,
     "noEmitHelpers": false,
     "noEmitOnError": true,
     "noErrorTruncation": true,
@@ -36,15 +35,13 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noStrictGenericChecks": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noImplicitUseStrict": false,
     "noLib": false,
     "noResolve": false,
-    "outDir": "../build/test",
     "preserveConstEnums": true,
     "removeComments": false,
-    "rootDir": "",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
@@ -53,14 +50,6 @@
     "suppressImplicitAnyIndexErrors": false,
     "target": "es2017",
     "traceResolution": false,
-    "typeRoots": [
-      "../node_modules/@types",
-      "custom-typings"
-    ]
-  },
-  "include": [
-    "test/**/*.ts",
-    "lib/**/*.ts"
-  ],
-  "exclude": []
+    "rootDir": "."
+  }
 }

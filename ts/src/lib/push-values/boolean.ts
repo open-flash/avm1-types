@@ -1,15 +1,15 @@
-import { $Boolean as _$Boolean } from "kryo/builtins/boolean";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { $PushValueType, PushValueType } from "../push-value-type";
+import { $Boolean as _$Boolean } from "kryo/lib/boolean.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { $PushValueType, PushValueType } from "../push-value-type.js";
 
 export interface Boolean {
   type: PushValueType.Boolean;
   value: boolean;
 }
 
-export const $Boolean: DocumentIoType<Boolean> = new DocumentType<Boolean>({
+export const $Boolean: RecordIoType<Boolean> = new RecordType<Boolean>({
   properties: {
     type: {type: new LiteralType({type: $PushValueType, value: PushValueType.Boolean as PushValueType.Boolean})},
     value: {type: _$Boolean},

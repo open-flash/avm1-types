@@ -1,17 +1,17 @@
-import { $Uint16 } from "kryo/builtins/uint16";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
+import { $Uint16 } from "kryo/lib/integer.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
 import { Uint16 } from "semantic-types";
-import { ActionBase } from "../action-base";
-import { $ActionType, ActionType } from "../action-type";
+import { ActionBase } from "../action-base.js";
+import { $ActionType, ActionType } from "../action-type.js";
 
 export interface GotoFrame extends ActionBase {
   action: ActionType.GotoFrame;
   frame: Uint16;
 }
 
-export const $GotoFrame: DocumentIoType<GotoFrame> = new DocumentType<GotoFrame>({
+export const $GotoFrame: RecordIoType<GotoFrame> = new RecordType<GotoFrame>({
   properties: {
     action: {type: new LiteralType({type: $ActionType, value: ActionType.GotoFrame as ActionType.GotoFrame})},
     frame: {type: $Uint16},

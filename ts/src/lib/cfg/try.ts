@@ -1,9 +1,9 @@
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
-import { $CatchBlock, CatchBlock } from "./catch-block";
-import { $Cfg, Cfg } from "./cfg";
-import { $CfgBlockType, CfgFlowType } from "./cfg-flow-type";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
+import { $CatchBlock, CatchBlock } from "./catch-block.js";
+import { $Cfg, Cfg } from "./cfg.js";
+import { $CfgBlockType, CfgFlowType } from "./cfg-flow-type.js";
 
 export interface Try {
   type: CfgFlowType.Try;
@@ -12,7 +12,7 @@ export interface Try {
   finally?: Cfg;
 }
 
-export const $Try: DocumentIoType<Try> = new DocumentType<Try>(() => ({
+export const $Try: RecordIoType<Try> = new RecordType<Try>(() => ({
   properties: {
     type: {type: new LiteralType({type: $CfgBlockType, value: CfgFlowType.Try as CfgFlowType.Try})},
     try: {type: $Cfg},

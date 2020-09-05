@@ -1,16 +1,16 @@
-import { $Sint32 as _$Sint32 } from "kryo/builtins/sint32";
-import { CaseStyle } from "kryo/case-style";
-import { DocumentIoType, DocumentType } from "kryo/types/document";
-import { LiteralType } from "kryo/types/literal";
+import { $Sint32 as _$Sint32 } from "kryo/lib/integer.js";
+import { CaseStyle } from "kryo";
+import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { LiteralType } from "kryo/lib/literal.js";
 import { Sint32 as _Sint32 } from "semantic-types";
-import { $PushValueType, PushValueType } from "../push-value-type";
+import { $PushValueType, PushValueType } from "../push-value-type.js";
 
 export interface Sint32 {
   type: PushValueType.Sint32;
   value: _Sint32;
 }
 
-export const $Sint32: DocumentIoType<Sint32> = new DocumentType<Sint32>(() => ({
+export const $Sint32: RecordIoType<Sint32> = new RecordType<Sint32>(() => ({
   properties: {
     type: {type: new LiteralType({type: $PushValueType, value: PushValueType.Sint32 as PushValueType.Sint32})},
     value: {type: _$Sint32},
