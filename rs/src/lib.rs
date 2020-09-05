@@ -14,7 +14,7 @@ pub mod raw;
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
-  serde(tag = "type", content = "target", rename_all = "kebab-case")
+  serde(tag = "type", content = "target", rename_all = "PascalCase")
 )]
 pub enum CatchTarget {
   Register(u8),
@@ -25,7 +25,7 @@ pub enum CatchTarget {
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
-  serde(rename_all = "kebab-case")
+  serde(rename_all = "PascalCase")
 )]
 pub enum GetUrl2Method {
   None,

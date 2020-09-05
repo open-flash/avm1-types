@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
-  serde(tag = "action", rename_all = "kebab-case")
+  serde(tag = "action", rename_all = "PascalCase")
 )]
 pub enum Action {
   Add,

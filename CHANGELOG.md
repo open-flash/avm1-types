@@ -1,5 +1,8 @@
 # Next
 
+- **[Breaking change]** Use `PascalCase` for enums and types.
+
+
 ## Rust
 
 - **[Fix]** Update dependencies

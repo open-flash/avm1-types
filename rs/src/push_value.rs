@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
-  serde(tag = "type", content = "value", rename_all = "kebab-case")
+  serde(tag = "type", content = "value", rename_all = "PascalCase")
 )]
 pub enum PushValue {
   Boolean(bool),
