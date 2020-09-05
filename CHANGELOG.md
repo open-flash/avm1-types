@@ -1,5 +1,9 @@
 # Next
 
+## Rust
+
+- **[Fix]** Update dependencies
+
 ## TypeScript
 
 - **[Breaking change]** Update to native ESM.
