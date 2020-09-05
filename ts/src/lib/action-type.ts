@@ -110,5 +110,5 @@ export enum ActionType {
 
 export const $ActionType: TsEnumType<ActionType> = new TsEnumType<ActionType>({
   enum: ActionType,
-  changeCase: CaseStyle.KebabCase,
+  changeCase: CaseStyle.PascalCase,
 });

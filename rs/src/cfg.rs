@@ -30,7 +30,7 @@ pub struct CfgLabel(pub String);
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
-  serde(tag = "action", rename_all = "kebab-case")
+  serde(tag = "action", rename_all = "PascalCase")
 )]
 pub enum Action {
   Add,
@@ -160,7 +160,7 @@ pub struct DefineFunction2 {
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
-  serde(tag = "type", rename_all = "kebab-case")
+  serde(tag = "type", rename_all = "PascalCase")
 )]
 pub enum CfgFlow {
   Error(Error),

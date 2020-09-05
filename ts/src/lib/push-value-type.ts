@@ -15,5 +15,5 @@ export enum PushValueType {
 
 export const $PushValueType: TsEnumType<PushValueType> = new TsEnumType<PushValueType>({
   enum: PushValueType,
-  changeCase: CaseStyle.KebabCase,
+  changeCase: CaseStyle.PascalCase,
 });

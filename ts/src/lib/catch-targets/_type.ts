@@ -8,5 +8,5 @@ export enum CatchTargetType {
 
 export const $CatchTargetType: TsEnumType<CatchTargetType> = new TsEnumType<CatchTargetType>({
   enum: CatchTargetType,
-  changeCase: CaseStyle.KebabCase,
+  changeCase: CaseStyle.PascalCase,
 });

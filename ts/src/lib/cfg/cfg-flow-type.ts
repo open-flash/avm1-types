@@ -15,5 +15,5 @@ export enum CfgFlowType {
 
 export const $CfgBlockType: TsEnumType<CfgFlowType> = new TsEnumType<CfgFlowType>({
   enum: CfgFlowType,
-  changeCase: CaseStyle.KebabCase,
+  changeCase: CaseStyle.PascalCase,
 });

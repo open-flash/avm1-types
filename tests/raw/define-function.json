@@ -1,5 +1,5 @@
 {
-  "action": "define-function",
+  "action": "DefineFunction",
   "name": "f",
   "parameters": [],
   "body_size": 1

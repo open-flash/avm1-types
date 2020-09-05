@@ -9,5 +9,5 @@ export enum GetUrl2Method {
 
 export const $GetUrl2Method: TsEnumType<GetUrl2Method> = new TsEnumType<GetUrl2Method>({
   enum: GetUrl2Method,
-  changeCase: CaseStyle.KebabCase,
+  changeCase: CaseStyle.PascalCase,
 });
