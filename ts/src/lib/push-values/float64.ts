@@ -14,7 +14,7 @@ export interface Float64 {
 export const $Float64: RecordIoType<Float64> = new RecordType<Float64>({
   properties: {
     type: {type: new LiteralType({type: $PushValueType, value: PushValueType.Float64 as PushValueType.Float64})},
-    value: {type: new Float64Type()},
+    value: {type: new Float64Type({allowInfinity: true, allowNaN: true})},
   },
   changeCase: CaseStyle.SnakeCase,
 });

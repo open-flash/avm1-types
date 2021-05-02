@@ -1,3 +1,13 @@
+# Next
+
+## Rust
+
+- **[Breaking change]** Use `u16` for `GotoFrame` and `GotoFrame2` body.
+- **[Feature]** Implement `Clone`, `Ord` and `Hash` for all types.
+- **[Feature]** Implement `TryFrom` to convert from a CFG action to a raw action.
+- **[Feature]** Expose `ActionHeader` type.
+- **[Fix]** Fix JSON serialization for floating-point push values.
+
 # 0.11.0 (2020-09-07)
 
 - **[Breaking change]** Use `PascalCase` for enums and types.

@@ -1,13 +1,12 @@
-use super::float_is::Is;
+use crate::swf_float::SwfFloat;
 #[cfg(feature = "use-serde")]
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "use-serde")]
+use serde::{Deserializer, Serializer};
+use std::cmp::Ordering;
+use std::hash::Hasher;
 
-#[derive(Debug)]
-#[cfg_attr(
-  feature = "use-serde",
-  derive(Serialize, Deserialize),
-  serde(tag = "type", content = "value", rename_all = "PascalCase")
-)]
+#[derive(Clone, Debug)]
 pub enum PushValue {
   Boolean(bool),
   Constant(u16),
@@ -20,28 +19,119 @@ pub enum PushValue {
   Undefined,
 }
 
-impl ::std::cmp::PartialEq for PushValue {
-  fn eq(&self, other: &Self) -> bool {
-    match (self, other) {
-      (&PushValue::Boolean(left), &PushValue::Boolean(right)) => left == right,
-      (&PushValue::Constant(left), &PushValue::Constant(right)) => left == right,
-      (&PushValue::Float32(left), &PushValue::Float32(right)) => left.is(&right),
-      (&PushValue::Float64(left), &PushValue::Float64(right)) => left.is(&right),
-      (&PushValue::Null, &PushValue::Null) => true,
-      (&PushValue::Register(left), &PushValue::Register(right)) => left == right,
-      (&PushValue::Sint32(left), &PushValue::Sint32(right)) => left == right,
-      (&PushValue::String(ref left), &PushValue::String(ref right)) => left == right,
-      (&PushValue::Undefined, &PushValue::Undefined) => true,
-      _ => false,
+#[cfg(feature = "use-serde")]
+impl Serialize for PushValue {
+  fn serialize<S>(&self, serializer: S) -> Result<<S as Serializer>::Ok, <S as Serializer>::Error>
+  where
+    S: Serializer,
+  {
+    PushValueImpl::from(self).serialize(serializer)
+  }
+}
+
+#[cfg(feature = "use-serde")]
+impl<'de> Deserialize<'de> for PushValue {
+  fn deserialize<D>(deserializer: D) -> Result<Self, <D as Deserializer<'de>>::Error>
+  where
+    D: Deserializer<'de>,
+  {
+    OwnedPushValueImpl::deserialize(deserializer).map(PushValue::from)
+  }
+}
+
+#[cfg(feature = "use-serde")]
+#[derive(Deserialize)]
+#[serde(tag = "type", content = "value", rename_all = "PascalCase")]
+enum OwnedPushValueImpl {
+  Boolean(bool),
+  Constant(u16),
+  Float32(SwfFloat<f32>),
+  Float64(SwfFloat<f64>),
+  Null,
+  Register(u8),
+  Sint32(i32),
+  String(String),
+  Undefined,
+}
+
+#[cfg(feature = "use-serde")]
+impl From<OwnedPushValueImpl> for PushValue {
+  fn from(value: OwnedPushValueImpl) -> Self {
+    match value {
+      OwnedPushValueImpl::Boolean(v) => PushValue::Boolean(v),
+      OwnedPushValueImpl::Constant(v) => PushValue::Constant(v),
+      OwnedPushValueImpl::Float32(v) => PushValue::Float32(v.into()),
+      OwnedPushValueImpl::Float64(v) => PushValue::Float64(v.into()),
+      OwnedPushValueImpl::Null => PushValue::Null,
+      OwnedPushValueImpl::Register(v) => PushValue::Register(v),
+      OwnedPushValueImpl::Sint32(v) => PushValue::Sint32(v),
+      OwnedPushValueImpl::String(v) => PushValue::String(v),
+      OwnedPushValueImpl::Undefined => PushValue::Undefined,
     }
   }
+}
 
-  fn ne(&self, other: &Self) -> bool {
-    !self.eq(other)
+/// Used to derive PartialEq / Eq / PartialOrd / Ord / Hash implementations
+/// by wrapping floating-point values.
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[cfg_attr(
+  feature = "use-serde",
+  derive(Serialize),
+  serde(tag = "type", content = "value", rename_all = "PascalCase")
+)]
+enum PushValueImpl<'a> {
+  Boolean(bool),
+  Constant(u16),
+  Float32(SwfFloat<f32>),
+  Float64(SwfFloat<f64>),
+  Null,
+  Register(u8),
+  Sint32(i32),
+  String(&'a str),
+  Undefined,
+}
+
+impl<'a> From<&'a PushValue> for PushValueImpl<'a> {
+  fn from(value: &'a PushValue) -> Self {
+    match value {
+      PushValue::Boolean(ref v) => PushValueImpl::Boolean(*v),
+      PushValue::Constant(ref v) => PushValueImpl::Constant(*v),
+      PushValue::Float32(ref v) => PushValueImpl::Float32(SwfFloat::from(*v)),
+      PushValue::Float64(ref v) => PushValueImpl::Float64(SwfFloat::from(*v)),
+      PushValue::Null => PushValueImpl::Null,
+      PushValue::Register(ref v) => PushValueImpl::Register(*v),
+      PushValue::Sint32(ref v) => PushValueImpl::Sint32(*v),
+      PushValue::String(ref v) => PushValueImpl::String(v),
+      PushValue::Undefined => PushValueImpl::Undefined,
+    }
+  }
+}
+
+impl ::std::cmp::PartialEq for PushValue {
+  fn eq(&self, other: &Self) -> bool {
+    PushValueImpl::from(self).eq(&PushValueImpl::from(other))
   }
 }
 
 impl ::std::cmp::Eq for PushValue {}
+
+impl ::std::cmp::PartialOrd for PushValue {
+  fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+    PushValueImpl::from(self).partial_cmp(&PushValueImpl::from(other))
+  }
+}
+
+impl ::std::cmp::Ord for PushValue {
+  fn cmp(&self, other: &Self) -> Ordering {
+    PushValueImpl::from(self).cmp(&PushValueImpl::from(other))
+  }
+}
+
+impl ::std::hash::Hash for PushValue {
+  fn hash<H: Hasher>(&self, state: &mut H) {
+    PushValueImpl::from(self).hash(state)
+  }
+}
 
 #[cfg(test)]
 mod tests {

@@ -1,0 +1,9 @@
+{
+  "action": "Push",
+  "values": [
+    {
+      "type": "Float64",
+      "value": "NaN"
+    }
+  ]
+}
