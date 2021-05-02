@@ -4,13 +4,13 @@ use serde::{Deserialize, Serialize};
 pub mod action;
 pub mod cfg;
 pub mod error;
-mod float_is;
 #[cfg(feature = "use-serde")]
 mod helpers;
 mod push_value;
 pub mod raw;
+mod swf_float;
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
@@ -21,7 +21,7 @@ pub enum CatchTarget {
   Variable(String),
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
@@ -33,11 +33,18 @@ pub enum GetUrl2Method {
   Post,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Parameter {
   pub register: u8,
   pub name: String,
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
+pub struct ActionHeader {
+  pub code: u8,
+  pub length: u16,
 }
 
 #[cfg(all(test, feature = "use-serde"))]
@@ -57,7 +64,10 @@ mod tests {
       .to_str()
       .expect("Failed to retrieve sample name");
 
-    if name == "corrupted-push" || name == "try-jump-to-catch-throw-finally" {
+    if name == "corrupted-push" || name == "try-jump-to-catch-throw-finally"
+    // || name == "float32-trace"
+    // || name == "float64-trace"
+    {
       return;
     }
 

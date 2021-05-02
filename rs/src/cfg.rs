@@ -5,13 +5,13 @@ use crate::{action, CatchTarget, Parameter};
 use serde::{Deserialize, Serialize};
 use vec1::Vec1;
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Cfg {
   pub blocks: Vec1<CfgBlock>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CfgBlock {
   pub label: CfgLabel,
@@ -19,14 +19,14 @@ pub struct CfgBlock {
   pub flow: CfgFlow,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CfgLabel(pub String);
 
-/// Similar to `Action` but no `End`, `Error , `Jump`, `If` `Throw`, `Return`,
+/// Similar to `raw::Action` but no `End`, `Error , `Jump`, `If` `Throw`, `Return`,
 /// `Try`, `WaitForFrame`, `WaitForFrame2` and `With`, also different
 /// `DefineFunction` and `DefineFunction2`.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
@@ -129,7 +129,7 @@ pub enum Action {
   TypeOf,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct DefineFunction {
   pub name: String,
@@ -137,7 +137,7 @@ pub struct DefineFunction {
   pub body: Cfg,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct DefineFunction2 {
   // Empty string if anonymous
@@ -156,7 +156,7 @@ pub struct DefineFunction2 {
   pub body: Cfg,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
   feature = "use-serde",
   derive(Serialize, Deserialize),
@@ -174,34 +174,34 @@ pub enum CfgFlow {
   With(With),
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Error {
   #[cfg_attr(feature = "use-serde", serde(skip_serializing_if = "Option::is_none"))]
   pub error: Option<InvalidActionError>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct If {
   pub true_target: Option<CfgLabel>,
   pub false_target: Option<CfgLabel>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Simple {
   pub next: Option<CfgLabel>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct CatchBlock {
   pub target: CatchTarget,
   pub body: Cfg,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct Try {
   pub r#try: Cfg,
@@ -211,7 +211,7 @@ pub struct Try {
   pub finally: Option<Cfg>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct WaitForFrame {
   pub frame: u16,
@@ -219,14 +219,14 @@ pub struct WaitForFrame {
   pub loading_target: Option<CfgLabel>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct WaitForFrame2 {
   pub ready_target: Option<CfgLabel>,
   pub loading_target: Option<CfgLabel>,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct With {
   pub body: Cfg,
