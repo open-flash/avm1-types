@@ -76,5 +76,5 @@ pub struct StoreRegister {
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
 pub struct StrictMode {
-  pub mode: u8,
+  pub is_strict: bool,
 }
