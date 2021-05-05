@@ -1,4 +1,4 @@
-# Next
+# 0.12.0 (2021-05-05)
 
 - **[Feature]** Add support for the `StrictMode` action.
 
