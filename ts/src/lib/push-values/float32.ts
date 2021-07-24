@@ -1,7 +1,7 @@
 import { CaseStyle } from "kryo";
-import { Float64Type } from "kryo/lib/float64.js";
-import { LiteralType } from "kryo/lib/literal.js";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { Float64Type } from "kryo/float64";
+import { LiteralType } from "kryo/literal";
+import { RecordIoType, RecordType } from "kryo/record";
 import { Float32 as _Float32 } from "semantic-types";
 
 import { $PushValueType, PushValueType } from "../push-value-type.js";

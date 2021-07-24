@@ -1,7 +1,7 @@
 import { CaseStyle } from "kryo";
-import { $Uint8 } from "kryo/lib/integer.js";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
-import { Ucs2StringType } from "kryo/lib/ucs2-string.js";
+import { $Uint8 } from "kryo/integer";
+import { RecordIoType, RecordType } from "kryo/record";
+import { Ucs2StringType } from "kryo/ucs2-string";
 import { Uint8 } from "semantic-types";
 
 // TODO(demurgos): rename to RegisterParameter or make register optional (undefined if 0)
