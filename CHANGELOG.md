@@ -1,5 +1,10 @@
 # Next
 
+## Rust
+
+- **[Fix]** Update dependencies.
+- **[Internal]** Add support for Clippy.
+
 ## Typescript
 
 - **[Breaking change]** Update to `kryo@0.13`.
