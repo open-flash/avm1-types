@@ -1,4 +1,3 @@
-use hex;
 use hex::FromHex;
 use serde::{Deserialize, Deserializer, Serializer};
 

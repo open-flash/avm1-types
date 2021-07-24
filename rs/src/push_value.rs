@@ -139,14 +139,15 @@ mod tests {
   #[cfg(feature = "use-serde")]
   use ::test_generator::test_resources;
 
+  #[allow(clippy::eq_op)]
   #[test]
   fn test_eq() {
     assert_eq!(PushValue::Boolean(false), PushValue::Boolean(false));
     assert_eq!(PushValue::Constant(0), PushValue::Constant(0));
     assert_eq!(PushValue::Float32(0.0), PushValue::Float32(0.0));
-    assert_eq!(PushValue::Float32(::std::f32::NAN), PushValue::Float32(::std::f32::NAN));
+    assert_eq!(PushValue::Float32(f32::NAN), PushValue::Float32(f32::NAN));
     assert_eq!(PushValue::Float64(0.0), PushValue::Float64(0.0));
-    assert_eq!(PushValue::Float64(::std::f64::NAN), PushValue::Float64(::std::f64::NAN));
+    assert_eq!(PushValue::Float64(f64::NAN), PushValue::Float64(f64::NAN));
     assert_eq!(PushValue::Null, PushValue::Null);
     assert_eq!(PushValue::Register(0), PushValue::Register(0));
     assert_eq!(PushValue::Sint32(0), PushValue::Sint32(0));
