@@ -1,4 +1,4 @@
-import { TaggedUnionType } from "kryo/lib/tagged-union.js";
+import { TaggedUnionType } from "kryo/tagged-union";
 
 import { $Error, Error } from "./error.js";
 import { $If, If } from "./if.js";

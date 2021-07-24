@@ -1,7 +1,7 @@
 import { CaseStyle } from "kryo";
-import { $Uint8 } from "kryo/lib/integer.js";
-import { LiteralType } from "kryo/lib/literal.js";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { $Uint8 } from "kryo/integer";
+import { LiteralType } from "kryo/literal";
+import { RecordIoType, RecordType } from "kryo/record";
 import { Uint8 } from "semantic-types";
 
 import { $CatchTargetType, CatchTargetType } from "./_type.js";

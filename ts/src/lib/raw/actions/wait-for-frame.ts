@@ -1,7 +1,7 @@
 import { CaseStyle } from "kryo";
-import { $Uint16, IntegerType } from "kryo/lib/integer.js";
-import { LiteralType } from "kryo/lib/literal.js";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
+import { $Uint16, IntegerType } from "kryo/integer";
+import { LiteralType } from "kryo/literal";
+import { RecordIoType, RecordType } from "kryo/record";
 import { Uint16, UintSize } from "semantic-types";
 
 import { ActionBase } from "../../action-base.js";

@@ -22,6 +22,18 @@
     "type": "git",
     "url": "git@github.com:open-flash/avm1-types.git"
   },
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./lib/*"
+      ]
+    }
+  },
   "scripts": {
     "clean": "rimraf \"./@(lib|main|test)\"",
     "lint": "eslint \"./src/**/*.ts\"",
@@ -31,41 +43,33 @@
     "test:build": "tsc --build src/test/tsconfig.json",
     "test": "yarn run test:build && mocha \"test/**/*.spec.js\"",
     "main:build": "tsc --build src/main/tsconfig.json",
-    "start": "yarn run main:build && node \"main/main.js\""
+    "start": "yarn run main:build && node ./main/main.js"
   },
   "engines": {
     "node": ">=14.13.1"
   },
   "dependencies": {
     "incident": "^3.2.1",
-    "kryo": "^0.11.2",
+    "kryo": "^0.13.0",
     "semantic-types": "^0.1.1",
     "ts-tagged": "^1.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.17",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^15.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.4.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
     "chai": "^4.3.4",
-    "eslint": "^7.25.0",
+    "eslint": "^7.31.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "furi": "^2.0.0",
-    "kryo-json": "^0.11.2",
-    "mocha": "^8.3.2",
+    "kryo-json": "^0.13.0",
+    "mocha": "^9.0.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.5"
   },
-  "type": "module",
-  "exports": {
-    ".": "./lib/index.js",
-    "./lib/": "./lib/"
-  },
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
   "files": [
-    "./lib/"
+    "./lib/**/*.(js|map|ts)"
   ]
 }

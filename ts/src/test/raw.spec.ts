@@ -1,6 +1,6 @@
 import chai from "chai";
 import fs from "fs";
-import { JSON_READER } from "kryo-json/lib/json-reader.js";
+import { JSON_READER } from "kryo-json/json-reader";
 import sysPath from "path";
 
 import { $Action, Action } from "../lib/raw/action.js";

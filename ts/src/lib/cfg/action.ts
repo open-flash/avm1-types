@@ -1,6 +1,6 @@
-import { LiteralType } from "kryo/lib/literal.js";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
-import { TaggedUnionType } from "kryo/lib/tagged-union.js";
+import { LiteralType } from "kryo/literal";
+import { RecordIoType, RecordType } from "kryo/record";
+import { TaggedUnionType } from "kryo/tagged-union";
 
 import { ActionType } from "../action-type.js";
 import { $Action as $RawAction, Action as RawAction } from "../raw/action.js";

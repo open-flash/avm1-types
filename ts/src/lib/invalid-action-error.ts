@@ -1,6 +1,6 @@
 import { CaseStyle } from "kryo";
-import { RecordIoType, RecordType } from "kryo/lib/record.js";
-import { Ucs2StringType } from "kryo/lib/ucs2-string.js";
+import { RecordIoType, RecordType } from "kryo/record";
+import { Ucs2StringType } from "kryo/ucs2-string";
 
 export interface InvalidActionError {
   message: string;
