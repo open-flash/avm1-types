@@ -1,6 +1,6 @@
 pub use crate::action::*;
 use crate::error::InvalidActionError;
-use crate::{action, CatchTarget, Parameter};
+use crate::{action, CatchTarget, FunctionFlags, Parameter};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use vec1::Vec1;
@@ -143,15 +143,8 @@ pub struct DefineFunction2 {
   // Empty string if anonymous
   pub name: String,
   pub register_count: u8,
-  pub preload_this: bool,
-  pub suppress_this: bool,
-  pub preload_arguments: bool,
-  pub suppress_arguments: bool,
-  pub preload_super: bool,
-  pub suppress_super: bool,
-  pub preload_root: bool,
-  pub preload_parent: bool,
-  pub preload_global: bool,
+  #[cfg_attr(feature = "serde", serde(flatten))]
+  pub flags: FunctionFlags,
   pub parameters: Vec<Parameter>,
   pub body: Cfg,
 }
