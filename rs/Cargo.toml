@@ -9,10 +9,8 @@ repository = "https://github.com/open-flash/avm1-types"
 readme = "./README.md"
 keywords = ["ast", "swf", "avm1"]
 license = "MIT/Apache-2.0"
-edition = "2018"
-
-[badges]
-travis-ci = { repository = "open-flash/avm1-types", branch = "master" }
+edition = "2021"
+rust-version = "1.60.0"
 
 [lib]
 name = "avm1_types"
@@ -20,17 +18,17 @@ path = "src/lib.rs"
 
 [dependencies]
 hex = { version = "0.4.3", optional = true }
-ordered-float = "2.6.0"
-serde = { version = "1.0.126", optional = true, features = ["derive"] }
+ordered-float = "3.0.0"
+serde = { version = "1.0.137", optional = true, features = ["derive"] }
 vec1 = "1.8.0"
 
 [features]
 # Serialization is enabled by default.
 # Use `avm1-types = { version = "...", default-features = false }` to disable it.
-default = ["use-serde"]
+default = ["serde"]
 
 # Adds implementation for `serde`'s `Serialiaze` and `Deserialize` traits.
-use-serde = ["hex", "serde", "vec1/serde"]
+serde = ["dep:hex", "dep:serde", "vec1/serde"]
 
 [dev-dependencies]
 serde_json_v8 = "0.1.1"
