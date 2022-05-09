@@ -1,0 +1,17 @@
+import { CaseStyle } from "kryo";
+import { LiteralType } from "kryo/literal";
+import { RecordIoType, RecordType } from "kryo/record";
+
+import { ActionBase } from "../action-base.mjs";
+import { $ActionType, ActionType } from "../action-type.mjs";
+
+export interface Increment extends ActionBase {
+  action: ActionType.Increment;
+}
+
+export const $Increment: RecordIoType<Increment> = new RecordType<Increment>({
+  properties: {
+    action: {type: new LiteralType({type: $ActionType, value: ActionType.Increment as ActionType.Increment})},
+  },
+  changeCase: CaseStyle.SnakeCase,
+});

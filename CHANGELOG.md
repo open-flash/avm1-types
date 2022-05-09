@@ -8,6 +8,13 @@
 - **[Breaking change]** Rename the feature `use-serde` to `serde`.
 - **[Fix]** Update dependencies.
 
+# Typescript
+
+- **[Breaking change]** Update to `kryo@0.14`.
+- **[Breaking change]** Compile to `.mjs`.
+- **[Fix]** Update dependencies.
+- **[Internal]** Use Yarn's Plug'n'Play linker.
+
 # 0.13.0 (2021-07-24)
 
 ## Rust

@@ -1,9 +1,0 @@
-export { $Boolean, Boolean } from "./boolean.js";
-export { $Constant, Constant } from "./constant.js";
-export { $Float32, Float32 } from "./float32.js";
-export { $Float64, Float64 } from "./float64.js";
-export { $Sint32, Sint32 } from "./sint32.js";
-export { $String, String } from "./string.js";
-export { $Null, Null } from "./null.js";
-export { $Register, Register } from "./register.js";
-export { $Undefined, Undefined } from "./undefined.js";
