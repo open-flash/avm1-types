@@ -1,6 +1,10 @@
 pub use self::push_value::PushValue;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
+
+#[macro_use]
+mod bitflags;
+
 pub mod action;
 pub mod cfg;
 pub mod error;
@@ -34,6 +38,29 @@ pub enum GetUrl2Method {
 pub struct Parameter {
   pub register: u8,
   pub name: String,
+}
+
+serde_bitflags! {
+  pub struct FunctionFlags: u16 {
+    #[serde(name = "preload_this")]
+    const PRELOAD_THIS = 1 << 0;
+    #[serde(name = "suppress_this")]
+    const SUPPRESS_THIS = 1 << 1;
+    #[serde(name = "preload_arguments")]
+    const PRELOAD_ARGUMENTS = 1 << 2;
+    #[serde(name = "suppress_arguments")]
+    const SUPPRESS_ARGUMENTS = 1 << 3;
+    #[serde(name = "preload_super")]
+    const PRELOAD_SUPER = 1 << 4;
+    #[serde(name = "suppress_super")]
+    const SUPPRESS_SUPER = 1 << 5;
+    #[serde(name = "preload_root")]
+    const PRELOAD_ROOT = 1 << 6;
+    #[serde(name = "preload_parent")]
+    const PRELOAD_PARENT = 1 << 7;
+    #[serde(name = "preload_global")]
+    const PRELOAD_GLOBAL = 1 << 8;
+  }
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
