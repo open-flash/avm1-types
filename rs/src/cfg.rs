@@ -3,6 +3,7 @@ use crate::error::InvalidActionError;
 use crate::{action, CatchTarget, FunctionFlags, Parameter};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
+use static_assertions::const_assert;
 use vec1::Vec1;
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -51,8 +52,8 @@ pub enum Action {
   CloneSprite,
   ConstantPool(action::ConstantPool),
   Decrement,
-  DefineFunction(DefineFunction),
-  DefineFunction2(DefineFunction2),
+  DefineFunction(Box<DefineFunction>),
+  DefineFunction2(Box<DefineFunction2>),
   DefineLocal,
   DefineLocal2,
   Delete,
@@ -68,7 +69,7 @@ pub enum Action {
   GetMember,
   GetProperty,
   GetTime,
-  GetUrl(action::GetUrl),
+  GetUrl(Box<action::GetUrl>),
   GetUrl2(action::GetUrl2),
   GetVariable,
   GotoFrame(action::GotoFrame),
@@ -99,7 +100,7 @@ pub enum Action {
   Push(action::Push),
   PushDuplicate,
   RandomNumber,
-  Raw(action::Raw),
+  Raw(Box<action::Raw>),
   RemoveSprite,
   SetMember,
   SetProperty,
@@ -128,6 +129,8 @@ pub enum Action {
   Trace,
   TypeOf,
 }
+
+const_assert!(std::mem::size_of::<Action>() <= 32);
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -161,11 +164,13 @@ pub enum CfgFlow {
   Return,
   Simple(Simple),
   Throw,
-  Try(Try),
+  Try(Box<Try>),
   WaitForFrame(WaitForFrame),
   WaitForFrame2(WaitForFrame2),
   With(With),
 }
+
+const_assert!(std::mem::size_of::<CfgFlow>() <= 64);
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
