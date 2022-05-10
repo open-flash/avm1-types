@@ -46,7 +46,7 @@ macro_rules! swf_float_impl {
       }
     }
 
-    #[cfg(feature = "use-serde")]
+    #[cfg(feature = "serde")]
     impl ::serde::ser::Serialize for SwfFloat<$fty> {
       fn serialize<S>(
         &self,
@@ -67,7 +67,7 @@ macro_rules! swf_float_impl {
       }
     }
 
-    #[cfg(feature = "use-serde")]
+    #[cfg(feature = "serde")]
     impl<'de> ::serde::de::Deserialize<'de> for SwfFloat<$fty> {
       fn deserialize<D>(deserializer: D) -> Result<Self, <D as serde::Deserializer<'de>>::Error>
       where

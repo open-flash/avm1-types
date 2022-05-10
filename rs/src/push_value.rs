@@ -1,7 +1,7 @@
 use crate::swf_float::SwfFloat;
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 use serde::{Deserializer, Serializer};
 use std::cmp::Ordering;
 use std::hash::Hasher;
@@ -19,7 +19,7 @@ pub enum PushValue {
   Undefined,
 }
 
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 impl Serialize for PushValue {
   fn serialize<S>(&self, serializer: S) -> Result<<S as Serializer>::Ok, <S as Serializer>::Error>
   where
@@ -29,7 +29,7 @@ impl Serialize for PushValue {
   }
 }
 
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 impl<'de> Deserialize<'de> for PushValue {
   fn deserialize<D>(deserializer: D) -> Result<Self, <D as Deserializer<'de>>::Error>
   where
@@ -39,7 +39,7 @@ impl<'de> Deserialize<'de> for PushValue {
   }
 }
 
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 #[derive(Deserialize)]
 #[serde(tag = "type", content = "value", rename_all = "PascalCase")]
 enum OwnedPushValueImpl {
@@ -54,7 +54,7 @@ enum OwnedPushValueImpl {
   Undefined,
 }
 
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 impl From<OwnedPushValueImpl> for PushValue {
   fn from(value: OwnedPushValueImpl) -> Self {
     match value {
@@ -75,7 +75,7 @@ impl From<OwnedPushValueImpl> for PushValue {
 /// by wrapping floating-point values.
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
-  feature = "use-serde",
+  feature = "serde",
   derive(Serialize),
   serde(tag = "type", content = "value", rename_all = "PascalCase")
 )]
@@ -136,7 +136,7 @@ impl ::std::hash::Hash for PushValue {
 #[cfg(test)]
 mod tests {
   use super::*;
-  #[cfg(feature = "use-serde")]
+  #[cfg(feature = "serde")]
   use ::test_generator::test_resources;
 
   #[allow(clippy::eq_op)]
@@ -155,7 +155,7 @@ mod tests {
     assert_eq!(PushValue::Undefined, PushValue::Undefined);
   }
 
-  #[cfg(feature = "use-serde")]
+  #[cfg(feature = "serde")]
   #[test_resources("../tests/*.json")]
   fn test_parse_json(path: &str) {
     let file = ::std::fs::File::open(path).unwrap();

@@ -1,10 +1,10 @@
 pub use self::push_value::PushValue;
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 pub mod action;
 pub mod cfg;
 pub mod error;
-#[cfg(feature = "use-serde")]
+#[cfg(feature = "serde")]
 mod helpers;
 mod push_value;
 pub mod raw;
@@ -12,7 +12,7 @@ mod swf_float;
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
-  feature = "use-serde",
+  feature = "serde",
   derive(Serialize, Deserialize),
   serde(tag = "type", content = "target", rename_all = "PascalCase")
 )]
@@ -22,11 +22,7 @@ pub enum CatchTarget {
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(
-  feature = "use-serde",
-  derive(Serialize, Deserialize),
-  serde(rename_all = "PascalCase")
-)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize), serde(rename_all = "PascalCase"))]
 pub enum GetUrl2Method {
   None,
   Get,
@@ -34,20 +30,20 @@ pub enum GetUrl2Method {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Parameter {
   pub register: u8,
   pub name: String,
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "use-serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct ActionHeader {
   pub code: u8,
   pub length: u16,
 }
 
-#[cfg(all(test, feature = "use-serde"))]
+#[cfg(all(test, feature = "serde"))]
 mod tests {
   use crate::cfg::Cfg;
   use std::path::Path;
@@ -84,7 +80,7 @@ mod tests {
   }
 }
 
-#[cfg(all(test, feature = "use-serde"))]
+#[cfg(all(test, feature = "serde"))]
 mod e2e_raw_tests {
   use crate::raw::Action;
   use test_generator::test_resources;
