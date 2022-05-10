@@ -4,6 +4,7 @@ use crate::CatchTarget;
 use crate::{action, FunctionFlags, Parameter};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
+use static_assertions::const_assert;
 use std::convert::TryFrom;
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -31,8 +32,8 @@ pub enum Action {
   CloneSprite,
   ConstantPool(action::ConstantPool),
   Decrement,
-  DefineFunction(DefineFunction),
-  DefineFunction2(DefineFunction2),
+  DefineFunction(Box<DefineFunction>),
+  DefineFunction2(Box<DefineFunction2>),
   DefineLocal,
   DefineLocal2,
   Delete,
@@ -48,7 +49,7 @@ pub enum Action {
   GetMember,
   GetProperty,
   GetTime,
-  GetUrl(action::GetUrl),
+  GetUrl(Box<action::GetUrl>),
   GetUrl2(action::GetUrl2),
   GetVariable,
   GotoFrame(action::GotoFrame),
@@ -79,7 +80,7 @@ pub enum Action {
   Push(action::Push),
   PushDuplicate,
   RandomNumber,
-  Raw(action::Raw),
+  Raw(Box<action::Raw>),
   RemoveSprite,
   SetMember,
   SetProperty,
@@ -115,12 +116,14 @@ pub enum Action {
   If(If),
   Throw,
   Return,
-  Try(Try),
+  Try(Box<Try>),
   WaitForFrame(WaitForFrame),
   WaitForFrame2(WaitForFrame2),
   With(With),
   Error(Error),
 }
+
+const_assert!(std::mem::size_of::<Action>() <= 32);
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(
@@ -129,8 +132,8 @@ pub enum Action {
   serde(tag = "action", rename_all = "PascalCase")
 )]
 pub enum FromCfgActionError {
-  DefineFunction(crate::cfg::DefineFunction),
-  DefineFunction2(crate::cfg::DefineFunction2),
+  DefineFunction(Box<crate::cfg::DefineFunction>),
+  DefineFunction2(Box<crate::cfg::DefineFunction2>),
 }
 
 impl TryFrom<crate::cfg::Action> for Action {

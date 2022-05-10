@@ -21,6 +21,7 @@ bitflags = "1.3.2"
 hex = { version = "0.4.3", optional = true }
 ordered-float = "3.0.0"
 serde = { version = "1.0.137", optional = true, features = ["derive"] }
+static_assertions = "1.1.0"
 vec1 = "1.8.0"
 
 [features]

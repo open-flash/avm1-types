@@ -7,6 +7,7 @@
 - **[Breaking change]** Require Rust `1.60.0`.
 - **[Breaking change]** Rename the feature `use-serde` to `serde`.
 - **[Breaking change]** Replace `DefineFunction2`'s boolean flags by a bitflag.
+- **[Breaking change]** Box big variants in `raw::Action`, `cfg::Action`, and `cfg::CfgFlow`.
 - **[Fix]** Update dependencies.
 
 # Typescript
