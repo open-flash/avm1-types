@@ -23,8 +23,8 @@
       "es2021"
     ],
     "locale": "en-US",
-    "module": "node12",
-    "moduleResolution": "node12",
+    "module": "node16",
+    "moduleResolution": "node16",
     "newLine": "lf",
     "noEmit": true,
     "noEmitHelpers": false,

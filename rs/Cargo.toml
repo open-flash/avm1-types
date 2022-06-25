@@ -1,9 +1,9 @@
 [package]
 name = "avm1-types"
-version = "0.13.0"
+version = "0.14.0"
 authors = ["Charles Samborski <demurgos@demurgos.net>"]
 description = "Types for the Flash ActionScript Virtual Machine (AVM1)"
-documentation = "https://github.com/open-flash/avm1-types"
+documentation = "https://docs.rs/avm1-types"
 homepage = "https://github.com/open-flash/avm1-types"
 repository = "https://github.com/open-flash/avm1-types"
 readme = "./README.md"
